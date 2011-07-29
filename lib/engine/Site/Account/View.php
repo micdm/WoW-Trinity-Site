@@ -45,7 +45,8 @@ class Site_Account_View extends Site_Main_View
 		$operation = $this->_RunOperation('renaming');
 		$this->_context
 			->Set('list', $operation->GetCharacters())
-			->Set('price', $operation->GetPrice());
+			->Set('price', $operation->GetPrice())
+			->Set('priceOfGold', $operation->GetPriceOfGold());
 
 		return $this->_Render('account/rename.htm');
 	}
@@ -55,8 +56,9 @@ class Site_Account_View extends Site_Main_View
 		$operation = $this->_RunOperation('makeuping');
 		$this->_context
 			->Set('list', $operation->GetCharacters())
-			->Set('price', $operation->GetPrice());
-		
+			->Set('price', $operation->GetPrice())
+			->Set('priceOfGold', $operation->GetPriceOfGold());
+
 		return $this->_Render('account/appearance.htm');
 	}
 	
@@ -65,7 +67,8 @@ class Site_Account_View extends Site_Main_View
 		$operation = $this->_RunOperation('transfer');
 		$this->_context
 			->Set('list', Env::Get()->user->GetAccount()->GetCharacters()->GetAll())
-			->Set('price', $operation->GetPrice());
+			->Set('price', $operation->GetPrice())
+			->Set('priceOfGold', $operation->GetPriceOfGold());
 			
 		return $this->_Render('account/transfer.htm');
 	}
@@ -78,7 +81,8 @@ class Site_Account_View extends Site_Main_View
 			->Set('list', Env::Get()->user->GetAccount()->GetCharacters()->GetAll())
 			->Set('outcoming', $operation->GetOutcoming())
 			->Set('incoming', $operation->GetIncoming())
-			->Set('price', $operation->GetPrice());
+			->Set('price', $operation->GetPrice())
+			->Set('priceOfGold', $operation->GetPriceOfGold());
 		
 		return $this->_Render('account/exchange.htm');
 	}

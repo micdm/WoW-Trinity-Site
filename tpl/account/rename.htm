@@ -11,7 +11,7 @@
 		{dm_status_msg name='main'}
 		
 		<p>Персонаж должен быть <strong>оффлайн</strong>.</p>
-		<p>Цена не зависит от уровня персонажа и составляет сейчас <span class="cheques">{$price}</span>.</p>
+		<p>Цена не зависит от уровня персонажа и составляет сейчас {if $price}<span class="cheques">{$price}</span>{elseif $priceOfGold}{$priceOfGold/10000} золотых{/if}.</p>
 		<p>Вы можете <a href="{dm_abs_path url='/account/appearance/'}">сменить внешность</a> за более серьезную цену.</p>
 	{/dm_block}
 	

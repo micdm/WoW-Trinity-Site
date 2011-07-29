@@ -364,6 +364,10 @@ abstract class User_Operation_Base
 			{
 				throw new Exception_UserInput('У Вас недостаточно чеков');
 			}
+			catch (Exception_User_Operation_Character_NotEnoughGold $e)
+			{
+				throw new Exception_UserInput('у персонажа недостаточно золота');
+			}
 			catch (Exception_User_Operation_BadCondition $e)
 			{
 				throw new Exception_UserInput($e->getMessage());
@@ -379,5 +383,15 @@ abstract class User_Operation_Base
 	public function GetPrice($action = 'main')
 	{
 		return $this->_actions[$action]->GetPrice();
+	}
+
+	/**
+	 * Возвращает цену совершения действия в золотых.
+	 * @param string $action
+	 * @return float
+	 */
+	public function GetPriceOfGold($action = 'main')
+	{
+		return $this->_actions[$action]->GetPriceOfGold();
 	}
 };

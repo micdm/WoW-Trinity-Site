@@ -476,14 +476,24 @@ abstract class User_Operation_Action_Base
 	 * Возвращает сумму оплаты для данной операции.
 	 * @return float
 	 */
-	public function GetPrice()
-	{
-		try
-		{
-			return Env::Get()->config->Get('operations/'.$this->_operation->GetName().'/'.$this->_name);
+	public function GetPrice() {
+		try {
+			$paramName = sprintf('operations/%s/%s/cheques', $this->_operation->GetName(), $this->_name);
+			return Env::Get()->config->Get($paramName);
+		} catch (Exception_Config_Base $e) {
+			return null;
 		}
-		catch (Exception_Config_Base $e)
-		{
+	}
+
+	/**
+	 * Возвращает сумму оплаты в золотых для данной операции.
+	 * @return float
+	 */
+	public function GetPriceOfGold() {
+		try {
+			$paramName = sprintf('operations/%s/%s/gold', $this->_operation->GetName(), $this->_name);
+			return Env::Get()->config->Get($paramName);
+		} catch (Exception_Config_Base $e) {
 			return null;
 		}
 	}
@@ -502,6 +512,19 @@ abstract class User_Operation_Action_Base
 		if (Env::Get()->user->GetCash()->Get() < $price)
 		{
 			throw new Exception_User_Operation_NotEnoughCheques();
+		}
+	}
+
+	/**
+	 * Проверяет, достаточно ли у персонажа золота.
+	 */
+	protected function _CheckGold() {
+		$price = $this->GetPriceOfGold();
+		if (empty($price)) {
+			return;
+		}
+		if ($this->GetCharacter()->GetMoney() < $price) {
+			throw new Exception_User_Operation_Character_NotEnoughGold();
 		}
 	}
 	
@@ -526,6 +549,17 @@ abstract class User_Operation_Action_Base
 		}
 		
 		Env::Get()->user->GetCash()->Change(-abs($price), 'operation_payment');
+	}
+
+	/**
+	 * Забирает золото.
+	 */
+	protected function _TakeOffGold() {
+		$price = $this->GetPriceOfGold();
+		if (empty($price)) {
+			return;
+		}
+		$this->GetCharacter()->SetMoney(-abs($price));
 	}
 
 	/**
@@ -724,6 +758,7 @@ abstract class User_Operation_Action_Base
 		$this->_CheckCharacters();
 		$this->_CheckMail();
 		$this->_CheckCheques();
+		$this->_CheckGold();
 		$this->_CheckAdditionalConditions();
 		
 		$this->_isConfirmed = $isConfirmed;
@@ -731,6 +766,7 @@ abstract class User_Operation_Action_Base
 		{
 			//Подтверждение получено либо не требуется вовсе:
 			$this->_TakeOffPayment();
+			$this->_TakeOffGold();
 			$this->_DoSomeActions();
 			$this->_WriteHistory();
 		}

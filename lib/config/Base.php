@@ -291,16 +291,24 @@ class Config_Base
 	 */
 	public static $operations = array(
 		'exchange' => array(
-			'main' => 5
+			'main' => array(
+				'gold' => 5000000,
+			),
 		),
 		'makeuping' => array(
-			'main' => 10
+			'main' => array(
+				'gold' => 50000000,
+			),
 		),
 		'renaming' => array(
-			'main' => 5
+			'main' => array(
+				'gold' => 10000000,
+			),
 		),
 		'transfer' => array(
-			'main' => 5
+			'main' => array(
+				'gold' => 5000000,
+			),
 		),
 	);
 };
