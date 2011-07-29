@@ -1,0 +1,39 @@
+AddType application/x-httpd-php5 php
+
+RewriteEngine on
+
+#Останавливаем итерации:
+RewriteCond %{ENV:REDIRECT_STATUS} !^$
+RewriteRule .* - [L]
+
+#Перенаправление на форум:
+RewriteCond %{REQUEST_URI} ^/forum/ [NC]
+RewriteRule forum/(.*) http://forum.example.com/$1 [R=permanent,L]
+
+#Завершающий слеш:
+RewriteRule ^((.+/|())[a-z0-9]+)$ /$1/ [NC,L,R=permanent]
+
+#Перенаправление для статики:
+RewriteRule ^s/(.+)$ /site/static/$1 [L]
+
+#Основное перенаправление:
+RewriteCond %{HTTP_HOST} !forum.example.com$ [NC]
+RewriteCond %{REQUEST_URI} ^.*/$
+RewriteCond %{REQUEST_URI} ^/$ [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+/|())$ /site/lib/engine/_handler.php?/$1
+
+#Закрываем папки svn и прочие служебные файлы:
+<FilesMatch "^\.">
+    deny from all
+</FilesMatch>
+
+#Закрываем все специальные файлы:
+<FilesMatch "\.(sql|cache)$">
+    deny from all
+</FilesMatch>
+
+#Открываем входную точку для PHP-скриптов:
+<FilesMatch "^_handler\.php$">
+    allow from all
+</FilesMatch>
