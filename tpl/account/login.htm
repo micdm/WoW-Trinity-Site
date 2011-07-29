@@ -1,0 +1,31 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}вход{/dm_block}
+
+{dm_block name="content_right"}
+	<div class="block">
+		<p>Для доступа в этот раздел требуется авторизация.</p>
+	</div>
+	
+	<div class="block">
+		{dm_error_msg name='main'}
+		{dm_status_msg name='main'}
+	
+		<form action="" method="post">
+			<dl>
+				<dt>Логин</dt>
+				<dd><input type="text" name="username" {if isset($input.username)}value="{$input.username}"{/if}></dd>
+			</dl>
+			
+			<dl>
+				<dt>Пароль</dt>
+				<dd><input type="password" name="password"></dd>
+			</dl>
+			
+			<p><input type="submit" name="main" value="Войти"></p>
+			
+			<p><a href="{dm_abs_path url='/reg/'}">Регистрация</a></p>
+			<p><a href="{dm_abs_path url='/recovery/'}">Напомнить пароль?</a></p>
+		</form>
+	</div>
+{/dm_block}

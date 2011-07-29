@@ -1,0 +1,11 @@
+{dm_extend name="mail/base.txt"}
+
+{dm_block name="title"}Аккаунт создан{/dm_block}
+
+{dm_block name="content"}
+Ваш игровой аккаунт создан. Напоминаем логин и пароль для аккаунта:
+{$username}
+{$password}
+
+Надеемся, игра на нашем сервере будет для Вас интересной и увлекательной.
+{/dm_block}

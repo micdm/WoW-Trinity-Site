@@ -1,0 +1,27 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="left_menu_extra"}
+	{if $user.isGuest == false}
+		<ul>
+			<li><span class="back"><a href="{dm_abs_path url='/account/'}">К аккаунту</a></span></li>
+		</ul>
+		
+		<ul>
+			<li><span><a href="{dm_abs_path url='/account/donate/mmotop/'}">Голос на MMOTOP.ru</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/donate/webmoney/'}">Перевод Webmoney</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/donate/sms/'}">SMS</a></span></li>
+		</ul>
+		
+		<ul>
+			<li><span><a href="{dm_abs_path url='/account/donate/items/'}">Предметы</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/donate/gold/'}">Золото</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/donate/transfer/'}">Перевод чеков</a></span></li>
+		</ul>
+		
+		{if $user.isAdministrator}
+		<ul class="admin">
+			<li><span><a href="{dm_abs_path url='/adm/donate/webmoney/'}">Чеки за WMR</a></span></li>
+		</ul>
+		{/if}
+	{/if}
+{/dm_block}

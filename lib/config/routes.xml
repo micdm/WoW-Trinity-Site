@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section starts="" cache="30" server_cache="1">
+	<section is="" call="Site_View" cache="86400"></section>
+
+	<section starts="internal" cache="86400">
+		<section is="403" call="Site_Internal_View::Page403"></section>
+		<section is="404" call="Site_Internal_View::Page404"></section>
+		<section is="500" call="Site_Internal_View::Page500"></section>
+		<section is="503" call="Site_Internal_View::Page503"></section>
+	</section>
+
+	<section is="welcome" call="Site_Main_View::Welcome"></section>
+	<section is="news" call="Site_Main_View::News"></section>
+	<section starts="reg" server_cache="0">
+		<section is="" call="Site_Main_View::Registration"></section> 
+		<section is="captcha" call="Site_Captcha"></section>
+	</section>
+	<section is="files" call="Site_Main_View::Files"></section>
+	<section starts="recovery" server_cache="0">
+		<section is="" call="Site_Main_View::Recovery"></section>
+		<section matches="([0-9a-f]+)" call="Site_Main_View::Recovery" args="code"></section>
+	</section>
+	<section is="realmlist" call="Site_Main_View::Realmlist"></section>
+	<section starts="warmor">
+		<section is="launcher" call="Site_Main_View::Warmor"></section>
+	</section>
+	<section is="agreement" call="Site_View::Agreement" cache="86400"></section>
+
+	<section starts="server">
+		<section is="" call="Site_Server_View"></section>
+		<section is="online" call="Site_Server_View::Online"></section>
+		<section is="pvp" call="Site_Server_View::Pvp"></section>
+		<section is="guild" call="Site_Server_View::Guild" starts="guild">
+			<section matches="(?:(\d+)|(all))" call="Site_Server_View::Guild" args="id,all"></section>
+		</section>
+		<section is="top20" call="Site_Server_View::TopTwenty"></section>
+		<section is="arena" call="Site_Server_View::Arena" starts="arena">
+			<section matches="(?:(\d+)|(all))" call="Site_Server_View::Arena" args="id,all"></section>
+		</section>
+		<section is="banlist" call="Site_Server_View::Banlist"></section>
+		<section is="gms" call="Site_Server_View::Gms"></section>
+		<section is="achievements" call="Site_Server_View::Achievement"></section>
+		<section starts="character" server_cache="0">
+			<section is="" call="Site_Server_View::Character"></section>
+			<section matches="(\d+)" call="Site_Server_View::Character" args="id"></section>
+		</section>
+	</section>
+
+	<section starts="account" cache="0" server_cache="0">
+		<section is="" call="Site_Account_View"></section>
+		<section is="characters" call="Site_Account_View::Characters"></section>
+		<section is="rename" call="Site_Account_View::Rename"></section>
+		<section is="appearance" call="Site_Account_View::Appearance"></section>
+		<section is="transfer" call="Site_Account_View::Transfer"></section>
+		<section is="exchange" call="Site_Account_View::Exchange"></section>
+		<section is="referrals" call="Site_Account_View::Referrals"></section>
+		<section is="userbars" call="Site_Account_View::Userbars"></section>
+		<section is="history" call="Site_Account_View::History"></section>
+		<section is="logout" call="Site_Account_View::Logout"></section>
+		<section starts="donate">
+			<section is="" call="Site_Account_Donate_View"></section>
+			<section is="mmotop" call="Site_Account_Donate_View::Mmotop"></section>
+			<section is="sms" call="Site_Account_Donate_View::Sms"></section>
+			<section is="webmoney" call="Site_Account_Donate_View::Webmoney"></section>
+			<section matches="items(?:/(\d+))?" call="Site_Account_Donate_View::Items"></section>
+			<section is="gold" call="Site_Account_Donate_View::Gold"></section>
+			<section is="transfer" call="Site_Account_Donate_View::Transfer"></section>
+		</section>
+	</section>
+	<section starts="adm" cache="0" server_cache="0">
+		<section is="" call="Site_Adm_View"></section>
+		<section is="visibility" call="Site_Adm_View::Visibility"></section>
+		<section starts="graphs">
+			<section is="" call="Site_Adm_View::Graphs"></section>
+			<section matches="(\d+)" call="Site_Adm_View::Graphs" args="type"></section>
+		</section>
+		<section is="account" call="Site_Adm_View::Account"></section>
+		<section is="search" call="Site_Adm_View::Search"></section>
+		<section is="referrals" call="Site_Adm_View::Referrals"></section>
+		<section is="mmotop" call="Site_Adm_View::Mmotop"></section>
+		<section starts="donate">
+			<section is="" call="Site_Adm_Donate_View"></section>
+			<section is="webmoney" call="Site_Adm_Donate_View::Webmoney"></section>
+			<section matches="items(?:/(\d+))?" call="Site_Adm_Donate_View::Items"></section>
+		</section>
+		<section is="errors" call="Site_Adm_View::Errors"></section>
+	</section>
+	<section starts="userbar" cache="300">
+		<section matches="(\d+)(?:/(\d+))?" call="Site_Userbar_View" args="id,flags"></section>
+	</section>
+	<section starts="gates" cache="0" server_cache="0">
+		<section is="sms" call="Site_Gates_View::Sms"></section>
+	</section>
+	<section starts="dev" cache="0" server_cache="0">
+		<section is="" call="Site_Dev_View"></section>
+		<section is="tests" call="Site_Dev_View::Tests"></section>
+	</section>
+</section>

@@ -1,0 +1,9 @@
+{dm_extend name="mail/base.txt"}
+
+{dm_block name="title"}{$subject}{/dm_block}
+
+{dm_block name="content"}
+Для окончания операции требуется Ваше подтверждение.
+Пожалуйста, перейдите по ссылке:
+{dm_abs_path host='1'}?code={$code}
+{/dm_block}

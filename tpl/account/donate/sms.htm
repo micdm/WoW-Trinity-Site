@@ -1,0 +1,35 @@
+{dm_extend name="account/donate/base.htm"}
+
+{dm_block name="subtitle"}SMS-сообщение{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/account/donate/sms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Взнос с помощью SMS</h2>
+	<p>Отправьте SMS-сообщение с текстом <strong>{$prefix} {$user.id}</strong> на короткий номер:</p>
+
+	<table cellpadding="0" cellspacing="0">
+	{foreach from=$numbers key="number" item="price"}
+		<tr>
+			<td>{$number}</td>
+			<td>${$price}</td>
+			<td><span class="cheques">{$price}</span></td>
+		</tr>
+	{/foreach}
+	</table>
+	
+	<p>Цены указаны приблизительно, точную цифру можно узнать у своего оператора связи.</p>
+	<p>Обратите внимание, что с помощью SMS можно внести:</p>
+	<ul>
+		<li>не более $10 в час;</li>
+		<li>не более $60 в сутки.</li>
+	</ul>
+	
+	<p>Если Вам в ответ пришло сообщение с текстом вида "<em>сервис недоступен, свяжитесь с администрацией aeternus.ru</em>", и чеки не были зачислены Вам на счет, напишите на форуме приватное сообщение на ник <strong><a href="{dm_forum target='profile' id='2'}" title="Перейти к профилю пользователя">Mogol</a></strong>.</p> 
+	<p>Сообщение должно содержать номер телефона, с которого была отправлена SMS, на какой номер была отправлена SMS, а также и текст SMS.</p>
+	<p>Обработка сообщения может занять некоторое время.</p>
+</div>
+{/dm_block}

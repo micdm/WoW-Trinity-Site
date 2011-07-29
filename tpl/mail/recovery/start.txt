@@ -1,0 +1,10 @@
+{dm_extend name="mail/base.txt"}
+
+{dm_block name="title"}Пароль готов для восстановления.{/dm_block}
+
+{dm_block name="content"}
+Чтобы сменить пароль для аккаунта {$username}, используйте следующую ссылку:
+{dm_abs_path url='/recovery/' host='1'}{$code}/
+
+Просто перейдите по ссылке и следуйте приведенным там инструкциям.
+{/dm_block}

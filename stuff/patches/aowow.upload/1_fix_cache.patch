@@ -1,0 +1,31 @@
+6d5
+< error_reporting(2039);
+29d27
+< 
+468a467,473
+> 
+> function GetCacheFilename($input)
+> {
+> 	$hash = md5($input);
+> 	return $prefix.'cache/mangos/'.substr($hash, -3).'/'.$hash.'.aww';
+> }
+> 
+483c488
+< 	$file = $prefix.'cache/mangos/'.$type_str.'_'.$type_id.($cache_types[$type][1] ? '' : '_'.$_SESSION['locale']).'.aww';
+---
+> 	$file = $type_str.'_'.$type_id.($cache_types[$type][1] ? '' : '_'.$_SESSION['locale']);
+486a492,493
+> 		
+> 	$file = GetCacheFilename($file);
+497a505,511
+> 	//Создаем директорию, если она еще не существует:
+> 	$dir = dirname($file);
+> 	if (file_exists($dir) == false)
+> 	{
+> 		mkdir($dir, 0777, true);
+> 	}
+> 	
+512c526
+< 	$data = @file_get_contents($prefix.'cache/mangos/'.$type_str.'_'.$type_id.($cache_types[$type][1] ? '' : '_'.$_SESSION['locale']).'.aww');
+---
+> 	$data = @file_get_contents(GetCacheFilename($type_str.'_'.$type_id.($cache_types[$type][1] ? '' : '_'.$_SESSION['locale'])));

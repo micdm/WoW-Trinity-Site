@@ -1,0 +1,46 @@
+{dm_extend name="server/base.htm"}
+
+{dm_block name="title"}Достижения{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+	<div class="block">
+		<h2>Достижения</h2>
+	
+		<p>Появившиеся перед самым выходом <abbr title='Wrath of the Lich King, второе дополнение WoW'>WotLK</abbr>, достижения стали удобным средством показать остальным игрокам, на что способен Ваш персонаж.</p>
+		<p>Попробуйте подобраться к опытнейшим!</p>
+	</div>
+	
+	<div class="block">
+		{if $list}
+			<table cellpadding="0" cellspacing="0" class="charlist">
+				<tr>
+					<th>#</th>
+					<th>Имя</th>
+					<th></th>
+					<th></th>
+					<th>Достижения</th>
+				</tr>
+				
+				{foreach from=$list key="i" item="player"}
+					<tr class="{cycle values='light,dark'} {if $player.faction == 0}alliance{else}horde{/if}">
+						<td class="number">{$i+1}</td>
+						<td class="name">{$player.name}</td>
+						<td class="race"><div class="r{$player.race}_{$player.gender}" title="{$races[$player.race]}"></div></td>
+						<td class="class"><div class="c{$player.class}" title="{$classes[$player.class]}"></div></td>
+						<td class="ach_count">{$player.count}</td>
+					</tr>
+				{/foreach}
+			</table>
+		{else}
+			<p>Никого не найдено.</p>
+		{/if}
+	</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/sorter.js"></script>
+{/dm_block}

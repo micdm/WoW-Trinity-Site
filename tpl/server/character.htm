@@ -1,0 +1,52 @@
+{dm_extend name="server/base.htm"}
+
+{dm_block name="title"}Найти персонажа{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/server/character.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+<div class="block">
+	<h2>Найти персонажа</h2>
+
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+
+	<form action="" method="post">
+		<dl>
+			<dt>Имя персонажа</dt>
+			<dd>
+				<input type="text" name="name" {if isset($input.name)}value="{$input.name}"{/if}>
+			</dd>
+		</dl>
+		
+		<p><input type="submit" name="main" value="Найти"></p>
+	</form>
+</div>
+
+{if isset($character)}
+	<div class="block">
+		<h2>Обзор персонажа {$character.name}</h2>
+	
+		<h3>Юзербар</h3>
+		<p><img src="{$character.userbarUrl}"></p>
+		
+		<h3>Рейтинг</h3>
+		{if $character.rating.isAvailable == false}
+			<p>Персонаж пока не может участвовать в рейтинге.</p>
+		{else}
+			<table cellpadding="0" cellspacing="0" class="charlist">
+				{foreach from=$character.rating.all item="rating"}
+					<tr {if $rating.value == 0}class="inactive"{/if}>
+						<td>{$rating.name}</td>
+						<td class="value">{$rating.value}</td>
+					</tr>
+				{/foreach}				
+			</table>
+		{/if}
+	</div>
+{/if}
+{/dm_block}

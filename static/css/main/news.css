@@ -1,0 +1,19 @@
+#news div.record {
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+}
+
+	#news div.record:last-child {
+		margin-bottom: 0px;
+	}
+
+#news a.title {
+	text-transform: lowercase;
+}
+
+#news p.date {
+	font-size: 12px;
+	font-style: italic;
+	
+	color: #AAA;
+}

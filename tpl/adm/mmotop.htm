@@ -1,0 +1,54 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}голоса на MMOTOP.ru{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/adm/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	{if $lastRevarded}
+		<p>Последнее награждение было {$lastRevarded|dm_date_format}.</p>
+	{/if}
+
+	{if $list}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th class="active">ID</th>
+				<th class="active">Имя</th>
+				<th class="active">Тип</th>
+			</tr>
+			
+			{foreach from=$list key="i" item="vote"}
+				<tr class="{cycle values='light,dark'}">
+					<td class="number">{$i+1}</td>
+					<td>{$vote.id}</td>
+					<td>{$vote.name}</td>
+					<td>{if $vote.type == 1}обычное{elseif $vote.type == 2}<strong>SMS</strong>{else}неизвестно{/if}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>Ничего не найдено.</p>
+	{/if}
+</div>
+
+{if $list && $user.isAdministrator}
+	<div class="block">
+		{dm_error_msg name='mmotop'}
+		{dm_status_msg name='mmotop'}
+	
+		<form action="" method="post">
+			<p><input type="submit" name="submit" value="Наградить" {if empty($list)}disabled="disabled"{/if}></p>
+		</form>
+	</div>
+{/if}
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/sorter.js"></script>
+{/dm_block}

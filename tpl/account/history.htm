@@ -1,0 +1,35 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}история операций{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>История операций</h2>
+
+	{if $history.list}
+		<p>Сейчас Ваш IP-адрес {$user.ip}.</p>
+		<table cellspacing="0" cellpadding="0" class="charlist">
+			<tr>
+				<th>Дата</th>
+				<th>IP</th>
+				<th>Операция</th>
+			</tr>
+		
+			{foreach from=$history.list item="operation"}
+				<tr>
+					<td class="history_date">{$operation.time|dm_date_format}</td>
+					<td class="history_ip">{if $operation.ip != $user.ip}<strong class="red">{$operation.ip}</strong>{else}{$operation.ip}{/if}</td>
+					<td class="history_description">{$operation.description}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>Никаких операций не совершалось.</p>
+	{/if}
+</div>
+{/dm_block}

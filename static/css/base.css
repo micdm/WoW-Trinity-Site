@@ -1,0 +1,368 @@
+html, body, div, ul, li, a, p, h2, h3, img, form, dl, dt, dd {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	
+	font-family: sans-serif;
+}
+
+html,
+body,
+#root_container {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: url("/s/images/ae/main/back.jpg") no-repeat center top black;
+}
+
+abbr {
+	cursor: help;
+}
+
+ul {
+	list-style-position: inside;
+}
+
+#root_container {
+	width: 940px;
+	margin: 0px auto;
+}
+
+
+.block {
+	background: url("/s/images/ae/main/blocks.png");
+
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	
+	color: #DDD;
+	
+	font-size: 14px;
+	line-height: 150%;
+}
+
+.red {
+	color: #ff0000;
+}
+
+.green {
+	color: #84ff00;
+}
+
+
+#header {
+	position: relative;
+	height: 175px;
+}
+
+	#logo {
+		position: absolute;
+		left: 0px;
+		top: 50px;
+		
+		width: 289px;
+		height: 71px;
+		
+		background: url("/s/images/ae/main/logo.png") no-repeat center center;
+	}
+	
+	#top_menu {
+		position: absolute;
+		top: -5px;
+		right: 160px;
+
+		padding: 15px;
+	}
+	
+		#top_menu a {
+			color: #FFF;
+			margin-right: 20px;
+		}
+		
+			#top_menu #forum_link {
+				color: #FFEA00;
+			}
+		
+			#top_menu a:last-of-type {
+				margin-right: 0px;
+			}
+	
+	#hint {
+		position: absolute;
+		right: 180px;
+		top: 103px;
+
+		padding-left: 22px;
+
+		background: url("/s/images/ae/main/hint.png") no-repeat left center;
+	}
+	
+		#hint a {
+			color: white;
+			font-style: italic;
+			font-size: 18px;
+		}
+
+	#mmotop_banner {
+		position: absolute;
+		right: 0px;
+		
+		width: 138px;
+		height: 149px;
+		
+		background: url("/s/images/ae/main/mmotop.png") no-repeat center top;
+		
+		padding-top: 25px;
+		
+		color: white;
+		text-align: center;
+		font-size: 14px;
+	}
+	
+		#mmotop_banner a {
+			color: white;
+		}
+		
+		#mmotop_header {
+			font-weight: bold;
+		}
+		
+		#mmotop_place {
+			color: #ffea00;
+			font-size: 30px;
+		}
+		
+			#mmotop_place sub {
+				font-size: 20px;
+				color: white;
+			}
+
+
+#body {
+	position: relative;
+}
+
+	#body .block {
+		margin-bottom: 40px;
+		padding: 40px;
+	}
+	
+		#body .block:last-of-type {
+			margin-bottom: 0px;
+		}
+	
+		#body .block h2 {
+			color: #efc805;
+			font-size: 16px;
+			
+			margin-bottom: 30px;
+		}
+		
+		#body .block h3 {
+			color: #efc805;
+			font-size: 15px;
+			
+			margin: 15px 0px;
+		}
+	
+		#body .block p {
+			text-align: justify;
+		}
+		
+
+		#body .block a {
+			color: #61d4ff;
+		}
+
+	#left_menu {
+		float: left;
+		width: 230px;
+	}
+	
+		#left_menu ul {
+			list-style-type: none;
+		}
+	
+		#server_info {
+			padding: 20px !important;
+			margin-bottom: 50px;
+		}
+		
+			#server_info h2 {
+				margin-bottom: 20px !important;
+			}
+		
+			#server_info li {
+				color: white;
+				font-size: 14px;
+				
+				margin-bottom: 10px;
+			}
+			
+				#server_info li:last-of-type {
+					margin-bottom: 0px;
+				}
+				
+				#server_info .online {
+					text-align: center;
+					margin-top: 4px;
+				}
+				
+					#server_info .online span {
+						display: inline-block;
+						height: 25px;
+						line-height: 25px;
+
+						padding-left: 28px;
+						background: url('/s/images/icons.png') no-repeat left center;
+					}
+					
+						#server_info .online span.alliance_icon {
+							background-position: -275px 0px;
+						}
+					
+						#server_info .online span.horde_icon {
+							background-position: -275px -25px;
+						}
+			
+			#server_info #server_info_uptime {
+				color: #84ff00;
+			}
+		
+		#left_menu_items ul {
+			margin-bottom: 40px;
+		}
+		
+			#left_menu_items li {
+				height: 40px;
+				line-height: 40px;
+				
+				background: url("/s/images/ae/main/blocks.png");
+				
+				margin-bottom: 10px;
+				padding-left: 20px;
+				
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+			}
+			
+				#left_menu_items li span {
+					padding-left: 25px;
+					background: url("/s/images/ae/main/menu_no_icon.png") no-repeat left center;
+				}
+			
+				#left_menu_items li a {
+					color: #DDD;
+					font-size: 14px;
+					line-height: 40px;
+				}
+				
+					#left_menu_items ul.admin li a {
+						color: #61D4FF;
+					}
+				
+					#left_menu_items li strong {
+						font-weight: normal;
+					
+						padding-right: 15px;
+						background: url("/s/images/ae/main/menu_attention.png") no-repeat right top;
+					}
+
+		#golpas_banner a {
+			display: block;
+			width: 160px;
+			height: 106px;
+			
+			background: url("/s/images/golpas.gif") no-repeat center center;
+			
+			margin: 0px auto;
+		}
+		
+		#betcourt_banner_wrapper {
+			text-align: center;
+		}
+		
+	#main_content {
+		float: left;
+		margin-left: 30px;		
+		width: 680px;
+	}
+	
+		#main_content .block p {
+			margin: 0.5em 0px;
+		}
+		
+			#main_content .block p.goto {
+				text-align: right;
+			}
+			
+		#main_content .block li {
+			margin: 0.5em 0px;
+		}
+	
+		#main_content .error,
+		#main_content .status
+		 {
+			font-weight: bold;
+			margin-bottom: 15px;
+		}
+		
+		#main_content .error
+		{
+			color: #ff0000;
+		}		
+		
+		#main_content .status {
+			color: #84ff00;
+		}
+	
+		#stack_banner {
+			width: 486px;
+			margin: 0px auto;
+		}
+	
+	#body_bottom {
+		clear: both;
+	}
+
+
+#footer {
+	position: relative;
+	height: 80px;
+	
+	margin: 10px 0px;
+}
+
+	#tbe_banner {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+
+	#about {
+		position: absolute;
+		right: 0px;
+		top: 56px;
+		
+		color: #DDD;
+		font-size: 12px;
+	}
+
+	#logo_bottom {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		
+		width: 141px;
+		height: 35px;
+		
+		background: url("/s/images/ae/main/logo_bottom.png") no-repeat center center;
+	}
+	
+	#tbe_counter {
+		position: absolute;
+		right: 163px;
+		top: 4px;
+	}

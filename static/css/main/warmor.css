@@ -1,0 +1,70 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	
+	font-family: sans;
+}
+
+body {
+	background: #111;
+}
+
+#root {
+	width: 780px;
+	height: 450px;
+	overflow: hidden;
+
+	position: relative;
+}
+
+#logo {
+	position: absolute;
+	left: 240px;
+	top: 140px;
+	
+	display: block;
+	width: 300px;
+	height: 75px;
+	
+	background: url('/s/images/ae/main/logo.png') no-repeat center center;
+}
+
+#online {
+	position: absolute;
+	left: 240px;
+	top: 250px;
+	
+	width: 300px;
+	height: 64px;
+}
+
+	#online div {
+		position: absolute;
+
+		width: 50%;
+		height: 64px;
+		line-height: 64px;
+		
+		color: white;
+		font-size: 30px;
+		
+		background: url('/s/images/factions.png') no-repeat;
+	}
+	
+		#online div.alliance {
+			right: 50%;
+			background-position: right top;
+			text-align: right;
+			padding-right: 70px;
+			
+			color: #60d4ff;
+		}
+		
+		#online div.horde {
+			left: 50%;
+			background-position: left -64px;
+			padding-left: 70px;
+			
+			color: #ff3b3b;
+		}

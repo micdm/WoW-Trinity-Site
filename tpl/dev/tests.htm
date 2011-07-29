@@ -1,0 +1,24 @@
+{dm_extend name="base.htm"}
+
+{dm_block name="title"}Разработка{/dm_block}
+
+{dm_block name="js"}
+	<script type="text/javascript" src="/s/js/another/jquery-1.4.2.min.js"></script>
+{/dm_block}
+
+{dm_block name="content"}
+{if isset($tests)}
+	<form action="" method="get">
+		{foreach from=$tests item="test"}
+			<p><input type="checkbox" name="tests[]" value="{$test[2]}">{$test[2]}</p>
+		{/foreach}
+		
+		<p><a href="#" onclick="$(':checkbox').attr('checked', true)">Отметить</a> - <a href="#" onclick="$(':checkbox').attr('checked', false)">Очистить</a></p>
+		<p><input type="submit" value="Запустить"></p>
+	</form>
+{/if}
+
+{if isset($result)}
+	<pre>{$result}</pre>
+{/if}
+{/dm_block}

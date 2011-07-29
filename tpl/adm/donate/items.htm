@@ -1,0 +1,76 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}предметы{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/items.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/donate/items.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/donate/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+	<div class="block">
+		<h2>Обмен чеков на предметы (<a href="{dm_abs_path url='/account/donate/items/'}{$category}/">к обычному списку...</a>)</h2>
+
+		{dm_error_msg name='edit_items'}
+		{dm_status_msg name='edit_items'}
+		
+		<p>
+			{foreach from=$categories item="item"}
+				{if $item.id == $category}
+					<strong>{$item.name}</strong>
+				{else}
+					<a href="{dm_abs_path url='/adm/donate/items/'}{$item.id}/">{$item.name}</a>
+				{/if}
+				&nbsp;
+			{/foreach}
+		</p>
+
+		{if $items}
+			<form action="" method="post">
+				{foreach from=$items key="i" item="subcategory"}
+					<table cellpadding="0" cellspacing="0" class="charlist">
+						<tr>
+							<th></th>
+							<th>V</th>
+							<th>X</th>
+							<th>{$subcategories.$i}</th>
+							<th>Цена</th>
+						</tr>
+					
+						{foreach from=$subcategory key="i" item="item"}
+							<input type="hidden" name="entries[]" value="{$item.entry}">
+
+							<tr>
+								<td class="icon" style="background-image: url('{$item.icon}')">
+									<div class="icon_medium">
+										{if $item.description}<div id="description{$item.entry}" class="item_description">{$item.description}</div>{/if}
+									</div>
+								</td>
+								<td class="checkbox active"><input type="checkbox" name="active[]" value="{$item.entry}" {if $item.isAvailableForDonate}checked="checked"{/if}></td>
+								<td class="checkbox remove"><input type="checkbox" name="remove[]" value="{$item.entry}"></td>
+								<td>{$item.name}</td>
+								<td class="price"><input type="text" name="prices[]" value="{$item.price}"></td>
+							</tr>
+						{/foreach}
+					</table>
+				{/foreach}
+
+				<dl>
+					<dt>Новые предметы<small>в формате ID1:цена1 + пробелы + ID2:цена2 + ...</small></dt>
+					<dd><textarea name="add" {if isset($input.add)}value="{$input.add}"{/if}></textarea></dd>
+				</dl>
+				
+				<p><input type="submit" name="edit_items" value="Сохранить"></p>
+			</form>
+		{else}
+			<p>Ничего не найдено.</p>
+		{/if}
+	</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra_auth"}
+	<script type="text/javascript" src="/s/js/items.js"></script>
+{/dm_block}

@@ -1,0 +1,18 @@
+{dm_extend name="base.htm"}
+
+{dm_block name="title"}Warmor{/dm_block}
+
+{dm_block name="css"}
+	<link rel="stylesheet" type="text/css" href="/s/css/main/warmor.css">
+{/dm_block}
+
+{dm_block name="content"}
+	<div id="root">
+		<a id="logo" href="{dm_abs_path url='/'}" target="_blank" title="Перейти на сайт"></a>
+
+		<div id="online">
+			<div class="alliance" title="Игроки Альянса">{$online.alliance}</div>
+			<div class="horde" title="Игроки Орды">{$online.horde}</div>
+		</div>
+	</div>
+{/dm_block}

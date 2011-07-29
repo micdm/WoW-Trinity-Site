@@ -1,0 +1,64 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}смена имени{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	{dm_block name="content_right_auth_description"}
+		<h2>Смена имени</h2>
+		
+		{dm_error_msg name='main'}
+		{dm_status_msg name='main'}
+		
+		<p>Персонаж должен быть <strong>оффлайн</strong>.</p>
+		<p>Цена не зависит от уровня персонажа и составляет сейчас <span class="cheques">{$price}</span>.</p>
+		<p>Вы можете <a href="{dm_abs_path url='/account/appearance/'}">сменить внешность</a> за более серьезную цену.</p>
+	{/dm_block}
+	
+	{if sizeof($list.main)}
+		<form action="" method="post">
+			<dl>
+				<dt></dt>
+				<dd>
+					<select name="guid">
+						{foreach from=$list.main item="character"}
+							<option value="{$character.guid}">{$character.name}</option>
+						{/foreach}
+					</select>
+				</dd>
+			</dl>
+			
+			<p><input type="submit" name="main" value="Сменить"></p>
+		</form>
+	{else}
+		<p>Подходящих персонажей не найдено.</p>
+	{/if}
+</div>
+
+{if sizeof($list.newTry)}
+	<div class="block">
+		<h2>Вторая попытка</h2>
+		
+		{dm_error_msg name='newTry'}
+		{dm_status_msg name='newTry'}
+		
+		<p>Поторопились сохранить изменения? Можем повторить без дополнительных затрат.</p>
+		<p>Внимание! Сервис работает только при условии, что персонаж не заходил в игровой мир.</p>
+		
+		<form action="" method="post">
+			<dl>
+				<dt></dt>
+				<dd>
+					<select name="guid">
+						{foreach from=$list.newTry key="guid" item="character"}
+							<option value="{$guid}">{$character}</option>
+						{/foreach}
+					</select>
+				</dd>
+			</dl>
+			
+			<p><input type="submit" name="newTry" value="Сменить"></p>
+		</form>
+	</div>
+{/if}
+{/dm_block}

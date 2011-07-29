@@ -1,0 +1,60 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}поиск аккаунта{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Поиск аккаунта</h2>
+
+	{dm_error_msg name='account'}
+	{dm_status_msg name='account'}
+	
+	{if $account}
+		<p>Найден аккаунт {$account.login}:</p>
+		<ul>
+			{if $user.isAdministrator}
+				<li>почта: {$account.email}</li>
+			{/if}
+			
+			<li>забанен: {if $account.isBanned}<strong class="red">да</strong>{else}нет{/if}</li>
+			<li>зарегистрирован: {$account.joinDate|dm_date_format}</li>
+			<li>последний визит: {$account.lastLoginDate|dm_date_format}</li>
+			<li>последний IP: {$account.ip}</li>
+		</ul>
+	{/if}
+
+	<form action="" method="post">
+		<dl>
+			<dt>Логин</dt>
+			<dd><input type="text" name="username" {if isset($input.username)}value="{$input.username}"{/if}></dd>
+		</dl>
+		
+		{if $account && $user.isAdministrator}
+			<dl>
+				<dt>Новый адрес почты<small>можно не указывать, чтоб оставить старый</small></dt>
+				<dd><input type="text" name="email" {if isset($input.email)}value="{$input.email}"{/if}></dd>
+			</dl>
+			
+			<dl>
+				<dt>Новый пароль<small>можно не указывать, чтоб оставить старый</small></dt>
+				<dd><input type="text" name="password" {if isset($input.password)}value="{$input.password}"{/if}></dd>
+			</dl>
+		{/if}
+
+		<p><input type="submit" name="account" value="Поехали"></p>
+	</form>
+</div>
+
+{if $account}
+	<div class="block">
+		<h2>Персонажи</h2>
+		{foreach from=$account.characters item="character"}
+			<p>{$character.name}</p>
+		{/foreach}
+	</div>
+{/if}
+{/dm_block}

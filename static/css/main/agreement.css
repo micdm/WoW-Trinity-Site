@@ -1,0 +1,48 @@
+body {
+	background: #222;
+	color: #68c4e7;
+}
+
+h1 {
+	font-size: 2em;
+	text-align: center;
+	color: #a2e5ff;
+}
+
+h2 {
+	font-size: 1.5em;
+	color: #a2e5ff;
+}
+
+form {
+	text-align: center;
+	padding: 10px;
+}
+
+strong {
+	color: #e76868;
+}
+
+a {
+	color: #a2e5ff;
+}
+
+	a:hover {
+		color: white;
+	}
+
+#main_frame
+{
+	position: absolute;
+	left: 50%;
+	
+	margin-left: -25em;
+
+	width: 50em;
+	
+	padding: 10px;
+	
+	text-align: justify;
+	
+	font-size: 1em;
+}

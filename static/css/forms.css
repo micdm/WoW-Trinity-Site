@@ -1,0 +1,38 @@
+#main_content form dl {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+	#main_content form dl:last-of-type {
+		margin-bottom: 10px;
+	}
+
+	#main_content form dd textarea {
+		width: 100%;
+	}
+
+#main_content form ul {
+	list-style-type: none;
+}
+
+	#main_content form ul.one_line li {
+		display: inline;
+		margin-right: 15px;
+	}
+	
+		#main_content form ul.one_line li:last-child {
+			margin-right: 0px;
+		}
+
+#main_content .block form p {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#main_content form small {
+	display: block;
+}
+
+#captcha {
+	cursor: pointer;
+}

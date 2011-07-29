@@ -1,0 +1,67 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}поиск{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Поиск</h2>
+
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+	
+	<form action="" method="get">
+		<dl>
+			<dt>Аккаунт</dt>
+			<dd><input type="text" name="account" {if isset($input.account)}value="{$input.account}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>Персонаж</dt>
+			<dd><input type="text" name="character" {if isset($input.character)}value="{$input.character}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>IP-адрес</dt>
+			<dd><input type="text" name="ip" {if isset($input.ip)}value="{$input.ip}"{/if}></dd>
+		</dl>
+
+		<p><input type="submit" name="main" value="Искать"></p>
+	</form>
+</div>
+
+{if $results}
+	{foreach from=$results item="account"}
+		<div class="block">
+			<h2>Аккаунт {$account.login} ({$account.id})</h2>
+			<h3>Аккаунт</h3>
+			<ul>
+				{if $account.isBanned}<li><strong class="red">забанен</strong></li>{/if}
+				{if $account.level}<li><strong class="green">{$levels[$account.level]}</strong></li>{/if}
+				{if $user.isAdministrator && $account.email}<li>почта: {$account.email}</li>{/if}
+				<li>зарегистрирован: {$account.joinDate|dm_date_format}</li>
+				{if $account.lastLoginDate}<li>последний визит: {$account.lastLoginDate|dm_date_format}</li>{/if}
+				<li>последний IP: <a href="{dm_abs_path url='/adm/search/'}?ip={$account.ip}&main=1" title="Кликните, чтобы искать по этому IP-адресу">{$account.ip}</a></li>
+			</ul>
+			
+			{if $account.bans}
+				<h3>История банов</h3>
+				{foreach from=$account.bans item="ban"}
+					<p>С {$ban.created|dm_date_format} {if $ban.isPermanent}<strong class="red">постоянный</strong>{else}до {$ban.expires|dm_date_format}{/if}{if $ban.author} от {$ban.author}{/if}: {$ban.reason} {if $ban.isActive}<strong class="green">(активный)</strong>{/if}</p>
+				{/foreach}
+			{/if}
+			
+			{foreach from=$account.characters item="character"}
+				<h3>{$character.name} ({$character.guid})</h3>
+				<p><img src="{$character.userbarUrl}"></p>
+				<ul>
+					{if $character.isOnline == false}<li>вышел из игры: {$character.logoutTime|dm_date_format}</li>{/if}
+				</ul>
+			{/foreach}
+		</div>
+	{/foreach}
+{/if}
+{/dm_block}

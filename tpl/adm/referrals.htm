@@ -1,0 +1,56 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}реферальная система{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/adm/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Начисления (всего {dm_number value=$stats.count numbers="реферальный аккаунт,реферальных аккаунта,реферальных аккаунтов"})</h2>
+	
+	{dm_error_msg name='referrals'}
+	{dm_status_msg name='referrals'}
+	
+	{if $lastRevarded}
+		<p>Последнее награждение было {$lastRevarded|dm_date_format}.</p>
+	{/if}
+	
+	{if $stats.total}
+		<p>Всего примерно {dm_number value=$stats.total numbers="золотой будет разослан,золотых будет разослано,золотых будет разослано"}.</p>
+		
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th class="active">guid</th>
+				<th class="active">Имя</th>
+				<th class="active">Золото</th>
+			</tr>
+			
+			{foreach from=$stats.summary key="guid" item="referral"}
+				<tr class="{cycle values='light,dark'}">
+					<td>{$guid}</td>
+					<td>{$referral.name}</td>
+					<td>{$referral.value/10000}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>Ничего не будет разослано.</p>
+	{/if}
+</div>
+
+{if $stats.total && $user.isAdministrator}
+	<div class="block">
+		<form action="" method="post">
+			<p><input type="submit" name="take" value="Начислить"></p>
+		</form>
+	</div>
+{/if}
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/sorter.js"></script>
+{/dm_block}

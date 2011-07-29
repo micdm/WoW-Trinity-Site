@@ -1,0 +1,11 @@
+{dm_extend name="server/base.htm"}
+
+{dm_block name="title"}Статус рилма{/dm_block}
+
+{dm_block name="content_right"}
+<div class="block">
+	<h2>Статус рилма</h2>
+	<p>Сейчас игровой сервер {if $realm}<strong class="green">работает</strong>{else}<strong class="red">не работает</strong>{/if}.</p>
+	<p>Всего создано {dm_number value=$characters numbers='персонаж,персонажа,персонажей' format='<strong>#1</strong> #2'} на {dm_number value=$accounts numbers='аккаунте,аккаунтах,аккаунтах' format='<strong>#1</strong> #2'}.</p>
+</div>
+{/dm_block}

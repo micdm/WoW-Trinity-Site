@@ -1,0 +1,7 @@
+{dm_block name="title"}{/dm_block}
+
+{dm_block name="content"}{/dm_block}
+
+Это письмо сформировано автоматически, и отвечать на него не нужно.
+
+С наилучшими пожеланиями, администрация игрового сервера "Aeternus" (http://aeternus.ru).

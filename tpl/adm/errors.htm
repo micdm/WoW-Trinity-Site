@@ -1,0 +1,23 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}последние ошибки{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Последние ошибки</h2>
+	<p>В порядке поступления.</p>
+</div>
+
+{if $list}
+	{foreach from=$list item="error"}
+		<div class="block">
+			<p>Сгенерирована {$error.added|dm_date_format} пользователем {$error.user} ({$error.ip}).</p>
+			<code>{$error.data|replace:"  ":"&nbsp;&nbsp;"|nl2br}</code>
+		</div>
+	{/foreach}
+{else}
+	<div class="block">
+		<p>Ошибок не найдено.</p>
+	</div>
+{/if}
+{/dm_block}

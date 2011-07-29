@@ -1,0 +1,12 @@
+#account_bar {
+	
+}
+
+	#account_bar .balance {
+		margin-left: 20px;
+	}
+
+	#account_bar .logout {
+		float: right;
+		margin-top: 0.5em;
+	}

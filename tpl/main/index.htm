@@ -1,0 +1,41 @@
+{dm_extend name="base.htm"}
+
+{dm_block name="full_title"}Aeternus: добро пожаловать в мир WoW{/dm_block}
+
+{dm_block name="meta"}
+	<meta http-equiv="refresh" content="10;url={dm_abs_path url='/welcome/'}">
+{/dm_block}
+
+{dm_block name="css"}
+	<link rel="stylesheet" type="text/css" href="/s/css/main/index.css">
+{/dm_block}
+
+{dm_block name="content"}
+	<div id="main">
+		<p id="no_wipes">{dm_number value=$noWipes.years numbers='год,года,лет'}{if $noWipes.months} и {dm_number value=$noWipes.months numbers='месяц,месяца,месяцев'}{/if} без вайпов</p>
+		<a id="enter" href="{dm_abs_path url='/welcome/'}" title="Перейти к полной версии сайта">Войти</a>
+		<a id="magistral" href="http://citynet.tomsk.net" title="Наш провайдер"></a>
+		
+		{literal}
+		<!-- TBE -->
+		<p style="margin:0;padding:0" id="tbec">
+			<script type="text/javascript">//<![CDATA[
+				setTimeout(function(){var s=document.createElement("SCRIPT");s.type="text/javascript";s.src="http://tbe.tom.ru/?a=wow.tomsk.net&js=1&c=0&s=8831&rnd="+(new Date().getTime());document.documentElement.firstChild.appendChild(s);},1)//]]>
+			</script>
+		</p>
+		<noscript>
+			<p id="tbec">
+				<a href="http://tbe.tom.ru"><img src="http://tbe.tom.ru/?a=asd&amp;c=0&amp;s=8831" alt="TBE" title="place hosts/hits users_online" style="border:0"></a>
+			</p>
+		</noscript>
+	
+		<!-- Yandex.Metrika -->
+		<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			try { var yaCounter694072 = new Ya.Metrika(694072); } catch(e){}
+		</script>
+		<noscript><img src="//mc.yandex.ru/watch/694072" style="position:absolute" alt=""></noscript>
+		<!-- /Yandex.Metrika -->
+		{/literal}
+	</div>
+{/dm_block}

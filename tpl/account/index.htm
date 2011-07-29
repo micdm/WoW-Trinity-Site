@@ -1,0 +1,85 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}главная{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Смена пароля</h2>
+	
+	{dm_error_msg name='password'}
+	{dm_status_msg name='password'}
+
+	<form action="" method="post">
+		<dl>
+			<dt>Старый пароль</dt>
+			<dd><input type="password" name="old"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Новый пароль<small>цифры, латинские символы или спецсимволы !"#$%, 3-16 всего</small></dt>
+			<dd><input type="password" name="new"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Новый пароль еще раз</dt>
+			<dd><input type="password" name="confirm"></dd>
+		</dl>
+		
+		<p><input type="submit" name="password" value="Изменить"></p>
+	</form>
+</div>
+
+<div class="block">
+	<h2>Смена адреса электронной почты</h2>
+	
+	{dm_error_msg name='email'}
+	{dm_status_msg name='email'}
+	
+	{if $user.isEmailCorrect == false}
+		<p><strong class="red">Внимание!</strong> Вы пока не указали адрес почты, поэтому не сможете пользоваться некоторыми сервисами (восстановление пароля, перенос и обмен персонажей).</p>
+	{else}
+		<p>Старый адрес почты замаскирован звездочками, однако некоторые символы отображаются. Это поможет Вам вспомнить адрес, если Вы его случайно забудете.</p>
+	{/if}
+
+	<form action="" method="post">
+		{if $user.isEmailCorrect}
+			<dl>
+				<dt>Старый адрес</dt>
+				<dd><input type="text" name="old" value="{$user.maskedEmail}"></dd>
+			</dl>
+		{/if}
+		
+		<dl>
+			<dt>Новый адрес<small>в формате username@example.com</small></dt>
+			<dd><input type="text" name="new" {if isset($input.new)}value="{$input.new}"{/if}></dd>
+		</dl>
+		
+		<p><input type="submit" name="email" value="Изменить"></p>
+	</form>
+</div>
+
+{*
+<div class="block">
+	<h2>Блокировка аккаунта</h2>
+	
+	{dm_error_msg name='lock'}
+	{dm_status_msg name='lock'}
+	
+	<p>Можно заблокировать аккаунт, чтобы нельзя было зайти на него с другого IP-адреса. Не используйте эту опцию, если у Вас динамический IP-адрес.</p>
+
+	<form action="" method="post">
+		<dl>
+			<dt>Заблокировать?</dt>
+			<dd>
+				<ul class="one_line">
+					<li><input type="radio" name="value" value="0" {if $user.isLocked == false}checked="checked"{/if}>нет</li>
+					<li><input type="radio" name="value" value="1" {if $user.isLocked}checked="checked"{/if}>да</li>
+				</ul>
+			</dd>
+		</dl>
+		
+		<p><input type="submit" name="lock" value="Изменить"></p>
+	</form>
+</div>
+*}
+{/dm_block}

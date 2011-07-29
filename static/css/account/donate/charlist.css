@@ -1,0 +1,25 @@
+table.charlist td.icon {
+	width: 38px;
+	background: no-repeat center center;
+}
+
+table.charlist td.checkbox {
+	width: 20px;
+}
+
+	table.charlist td.checkbox.active {
+		background: green;
+	}
+
+	table.charlist td.checkbox.remove {
+		background: red;
+	}
+
+table.charlist td.price {
+	text-align: center;
+	width: 50px;
+}
+
+	table.charlist td.price input {
+		width: 100%;
+	}

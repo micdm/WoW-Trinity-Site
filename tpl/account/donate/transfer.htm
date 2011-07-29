@@ -1,0 +1,33 @@
+{dm_extend name="account/donate/base.htm"}
+
+{dm_block name="subtitle"}перевод чеков{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Перевод чеков</h2>
+	
+	{dm_error_msg name='transfer'}
+	{dm_status_msg name='transfer'}
+
+	<p>Вы можете свободно перенести любое (в том числе и дробное) количество своих чеков на другой аккаунт.</p>
+
+	<form action="" method="post">
+		<dl>
+			<dt>Имя персонажа<small>чеки будут переведены на аккаунт этого персонажа</small></dt>
+			<dd><input type="text" name="character" {if isset($input.character)}value="{$input.character}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>ИЛИ имя аккаунта<small>необязательно, если указали персонажа выше</small></dt>
+			<dd><input type="text" name="account" {if isset($input.account)}value="{$input.account}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>Сколько чеков переводите?</dt>
+			<dd><input type="text" name="amount" {if isset($input.amount)}value="{$input.amount}"{/if}></dd>
+		</dl>
+
+		<p><input type="submit" name="transfer" value="Перевести"></p>
+	</form>
+</div>
+{/dm_block}

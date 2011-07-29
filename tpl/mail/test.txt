@@ -1,0 +1,1 @@
+{if isset($foo) && isset($bar)}{$foo}{$bar}{/if}

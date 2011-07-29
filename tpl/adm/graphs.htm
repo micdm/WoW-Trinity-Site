@@ -1,0 +1,30 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}графики{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Легенда</h2>
+	<p>Можно проследить, как всякие явления влияют на количество регистраций в день. Жизнь сервера в картинках фактически.</p>
+</div>
+
+<div class="block">
+	<h2>Динамика регистраций за месяц</h2>
+	<p><img src="{dm_abs_path url='/adm/graphs/2/'}"></p>
+</div>
+
+<div class="block">
+	<h2>Динамика регистраций за три месяца</h2>
+	<p><img src="{dm_abs_path url='/adm/graphs/1/'}"></p>
+</div>
+
+<div class="block">
+	<h2>Динамика регистраций за полгода</h2>
+	<p><img src="{dm_abs_path url='/adm/graphs/0/'}"></p>
+</div>
+
+<div class="block">
+	<h2>Динамика максимального онлайна за три месяца</h2>
+	<p><img src="{dm_abs_path url='/adm/graphs/3/'}"></p>
+</div>
+{/dm_block}

@@ -1,0 +1,72 @@
+{dm_extend name="server/base.htm"}
+
+{dm_block name="title"}Банлист{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+<div class="block">
+	<h2>Банлист</h2>
+	<p>Бан - накладываемое администратором наказание: игрок в течение некоторого времени не может зайти в мир.</p>
+	<p>К сожалению, иногда это единственный способ остановить человека, чтобы он не отравлял игру окружающим.</p>
+	<p>Наведите курсор на интересующую строку и увидите причину бана.</p>
+</div>
+
+<div class="block">
+	<h2>Аккаунты</h2>
+	
+	{if $banlist.accounts}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th class="active">Логин</th>
+				<th class="active">Дата</th>
+				<th class="active">Истекает</th>
+			</tr>
+		
+			{foreach from=$banlist.accounts key="i" item="ban"}
+				<tr class="{cycle values='light,dark'}" title="{$ban.banreason}">
+					<td class="number">{$i+1}</td>
+					<td class="banlist_target" {if $user.id == $ban.id}class="red"{/if}>{$ban.username}</td>
+					<td class="banlist_start">{if $ban.bandate}{$ban.bandate|dm_date_format}{else}неизвестно{/if}</td>
+					<td class="banlist_end">{if $ban.permanent}<strong class="red">постоянный</strong>{elseif $ban.unbandate == 0}меньше часа{else}{dm_number value=$ban.unbandate numbers="час,часа,часов"}{/if}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>Забаненных аккаунтов не найдено.</p>
+	{/if}
+</div>
+
+<div class="block">
+	<h2>IP-адреса</h2>
+	
+	{if $banlist.ips}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th class="active">Адрес</th>
+				<th class="active">Дата</th>
+				<th class="active">Истекает</th>
+			</tr>
+		
+			{foreach from=$banlist.ips key="i" item="ban"}
+				<tr class="{cycle values='light,dark'}" title="{$ban.banreason}">
+					<td class="number">{$i+1}</td>
+					<td class="banlist_target">{$ban.ip}</td>
+					<td class="banlist_start">{if $ban.bandate}{$ban.bandate|dm_date_format}{else}неизвестно{/if}</td>
+					<td class="banlist_end">{if $ban.permanent}<strong class="red">постоянный</strong>{elseif $ban.unbandate == 0}меньше часа{else}{dm_number value=$ban.unbandate numbers="час,часа,часов"}{/if}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>Забаненных IP-адресов не найдено.</p>
+	{/if}
+</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/sorter.js"></script>
+{/dm_block}

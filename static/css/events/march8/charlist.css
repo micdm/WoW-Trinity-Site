@@ -1,0 +1,27 @@
+table.charlist tr.dark {
+	background: #d082a1;
+}
+
+table.charlist tr.light {
+	background: #e791b3;
+}
+
+table.charlist tr:hover {
+	background: #ffc2da;
+}
+
+table.charlist th.active:hover {
+	background-color: #423339;
+}
+	
+table.charlist th.current_sort {
+	background-color: #8e3357;
+}
+
+table.charlist tr.dark td.current_sort {
+	background: #d096ad;
+}
+
+table.charlist tr.light td.current_sort {
+	background: #e7a9c2;
+}

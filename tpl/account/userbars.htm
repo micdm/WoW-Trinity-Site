@@ -1,0 +1,81 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}юзербары{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/account/userbars.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Юзербары</h2>
+	<p>Юзербар - небольшая картинка, кратко рассказывающая о Вашем персонаже (имя, гильдия, класс и прочее).</p>
+	<p>Юзербар можно разместить на форуме у себя в подписи.</p>
+	<noscript class="red">Для работы необходимо включить JavaScript в браузере!</noscript>
+</div>
+
+<div class="block">
+	<form id="userbar_settings" action="" method="post">
+		<dl>
+			<dt>Персонаж</dt>
+			<dd>
+				<select name="to">
+					{foreach from=$list item="character"}
+						<option value="{$character.guid}">{$character.name}</option>
+					{/foreach}
+				</select>
+			</dd>
+		</dl>
+		
+		<dl>
+			<dt>Добавить реферальную ссылку?<small><a href="{dm_abs_path url='/account/referrals/'}" title="Перейти на страницу реферальной системы">Подробнее...</a></small></dt>
+			<dd><input type="checkbox" name="referral" value="1"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Убрать состояние "онлайн/оффлайн"?<small></small></dt>
+			<dd><input type="checkbox" name="online" value="1"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Отключить серый цвет текста?<small>если персонаж давно не заходил в мир, информация о нем будет выведена текстом серого цвета</small></dt>
+			<dd><input type="checkbox" name="gray" value="1"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Убрать время выхода?<small>время, когда персонаж в последний раз выходил из мира, не будет указано</small></dt>
+			<dd><input type="checkbox" name="logout" value="1"></dd>
+		</dl>
+		
+		{if $user.isPlayer == false}
+		<dl>
+			<dt>Добавить GM-подсветку?<small>не забудьте выставить галочку в <a href="{dm_abs_path url='/adm/visibility/'}" title="Иначе ничего не выйдет">Маскировке</a></small></dt>
+			<dd><input type="checkbox" name="gm" value="1"></dd>
+		</dl>
+		{/if}
+	</form>
+</div>
+
+<div class="block">
+	<h2>Код для форума</h2>
+	<code id="userbar_code"></code>
+</div>
+
+<div class="block">
+	<h2>HTML-код</h2>
+	<code id="userbar_code_plain"></code>
+</div>
+
+<div class="block">
+	<h2>Предпросмотр</h2>
+	<p id="userbar_preview"></p>
+</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/userbars.js"></script>
+	<script type="text/javascript">
+		var USERBARS_PAGE = "{dm_abs_path url='/userbar/' host='1'}";
+		var REGISTRATION_PAGE = "{dm_abs_path url='/reg/' host='1'}";
+	</script>
+{/dm_block}

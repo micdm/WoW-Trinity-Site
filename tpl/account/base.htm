@@ -1,0 +1,59 @@
+{dm_extend name="subpart.htm"}
+
+{dm_block name="title"}Управление аккаунтом: {dm_block name="subtitle"}{/dm_block}{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/base.css">
+	
+	{dm_block name="css_extra_auth"}{/dm_block}
+{/dm_block}
+
+{dm_block name="left_menu_extra"}
+	{if $user.isGuest == false}
+		<ul>
+			<li><span><a href="{dm_abs_path url='/account/'}" title="Основные операции вроде смены пароля">Настройки</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/characters/'}" title="Если кто-то из персонажей застрял, можно вытащить">Застряли?</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/referrals/'}" title="Приводите друзей и получайте призы">Рефералы</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/exchange/'}" title="Безопасный обмен персонажами между аккаунтами">Обмен</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/transfer/'}" title="Перенос персонажа на другой аккаунт">Перенос</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/rename/'}">Смена имени</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/appearance/'}">Смена внешности</a></span></li>
+			<li><span><a href="{dm_abs_path url='/account/userbars/'}" title="Картинки">Юзербары</a></span></li>
+			<li><span><strong><a href="{dm_abs_path url='/account/history/'}">История операций</a></strong></span></li>
+		</ul>
+		
+		<ul>
+			<li><span><a href="{dm_abs_path url='/account/donate/'}">Помощь серверу</a></span></li>
+		</ul>
+			
+		{if $user.isPlayer == false}
+			<ul class="admin">
+				<li><span><a href="{dm_abs_path url='/adm/'}" title="Инструменты администратора">Администратору</a></span></li>
+			</ul>
+		{/if}
+	{/if}
+{/dm_block}
+
+{dm_block name="content_right"}
+	{if $user.isGuest == false}
+		<div id="account_bar" class="block">
+			<form action="/account/logout/" method="post" class="logout">
+				<input type="submit" name="main" value="Выход">
+			</form>
+		
+			<p>
+				Аккаунт: <strong>{$user.login}</strong>
+				<span class="balance" title="За чеки можно получить разные полезные услуги"><span class="cheques {if $balance == 0}red{/if}">{$balance}</span> &larr; <a href="{dm_abs_path url='/account/donate/'}" title="Узнайте больше про чеки">это что такое?</a></span>
+			</p>
+		</div>
+	
+		{dm_block name="content_right_auth"}{/dm_block}
+	{/if}
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/forms.js"></script>
+	
+	{dm_block name="js_bottom_extra_auth"}{/dm_block}
+{/dm_block}

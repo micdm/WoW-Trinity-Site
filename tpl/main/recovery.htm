@@ -1,0 +1,32 @@
+{dm_extend name="base_main.htm"}
+
+{dm_block name="title"}Восстановление пароля{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+<div class="block">
+	<h2>Восстановление пароля</h2>
+	
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+	
+	<p>Впишите логин аккаунта, от которого Вы забыли пароль.</p>
+	<p>На почтовый ящик будет отправлено письмо с дальнейшими указаниями.</p>
+
+	<form action="" method="post">
+		<dl>
+			<dt>Логин</dt>
+			<dd><input type="text" name="username" {if isset($input.username)}value="{$input.username}"{/if}></dd>
+		</dl>
+		
+		<p><input type="submit" name="main" value="Поехали"></p>
+	</form>
+</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/forms.js"></script>
+{/dm_block}

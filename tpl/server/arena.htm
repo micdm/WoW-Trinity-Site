@@ -1,0 +1,87 @@
+{dm_extend name="server/base.htm"}
+
+{dm_block name="title"}Арена{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+{if isset($list)}
+	<div class="block">
+		<h2>Арены</h2>
+	
+		{if empty($needAll)}
+			<p>Команды с рейтингом ниже {$minRating} не отображаются (<a href="{dm_abs_path url='/server/arena/all/'}">показать все...</a>).</p>
+		{else}
+			<p>Отображены все команды (<a href="{dm_abs_path url='/server/arena/'}">скрыть с рейтингом меньше {$minRating}...</a>).</p>
+		{/if}
+	</div>
+
+	{foreach from=$list key="size" item="type"}
+		<div class="block">
+			<h2>Команды {$size}x{$size}</h2>
+			
+			{if $type}
+				<table cellpadding="0" cellspacing="0" class="charlist">
+					<tr>
+						<th>#</th>
+						<th class="active">Название</th>
+						<th class="active">Лидер</th>
+						<th class="active">Рейтинг</th>
+					</tr>
+					
+					{foreach from=$type key="i" item="team"}
+						<tr class="{cycle values='light,dark'} {if $team.faction == 0}alliance{else}horde{/if}">
+							<td class="number">{$i+1}</td>
+							<td class="team_name" title="{$team.name}"><div></div><a href="{dm_abs_path url='/server/arena/'}{$team.arenateamid}/">{$team.name|dm_truncate:21:'&hellip;':true}</a></td>
+							<td class="team_leader">{$team.captain|default:"?"}</td>
+							<td class="team_rating">{$team.rating}</td>
+						</tr>
+					{/foreach}
+				</table>
+			{else}
+				<p>Ничего не найдено.</p>
+			{/if}
+		</div>
+	{/foreach}
+{elseif isset($team)}
+	<div class="block">
+		<h2>Команда {$team.name} ({$team.rating})</h2>
+
+		{if $team.members}
+			<table cellpadding="0" cellspacing="0" class="charlist">
+				<tr>
+					<th>#</th>
+					<th>Имя</th>
+					<th></th>
+					<th></th>
+					<th>Неделя</th>
+					<th>Сезон</th>
+					<th>К начислению</th>
+				</tr>
+				
+				{foreach from=$team.members key="i" item="player"}
+					<tr class="{cycle values='light,dark'} {if $player.faction == 0}alliance{else}horde{/if}">
+						<td class="number">{$i+1}</td>
+						<td class="name">{$player.name}</td>
+						<td class="race"><div class="r{$player.race}_{$player.gender}" title="{$races[$player.race]}"></div></td>
+						<td class="class"><div class="c{$player.class}" title="{$classes[$player.class]}"></div></td>
+						<td class="team_week">{$player.wons_week} - {$player.played_week-$player.wons_week}</td>
+						<td class="team_total">{$player.wons_season} - {$player.played_season-$player.wons_season}</td>
+						<td class="team_points">{$player.points_to_add}</td>
+					</tr>
+				{/foreach}
+			</table>
+		{else}
+			<p>Никого не найдено.</p>
+		{/if}
+		
+		<p class="goto"><a href="{dm_abs_path url='/server/arena/'}">вернуться к списку команд</a> &rarr;</p>
+	</div>
+{/if}
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/sorter.js"></script>
+{/dm_block}

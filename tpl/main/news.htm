@@ -1,0 +1,30 @@
+{dm_extend name="base_main.htm"}
+
+{dm_block name="title"}Новости сервера{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/main/news.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+<div id="news" class="block">
+	<h2>Новости сервера</h2>
+	{foreach from=$news key="i" item="item"}
+		<div class="record">
+			<h3>{$item.poster}: <a href="{dm_forum target='post' id=$item.postId}" class="title">{$item.subject}</a></h3>
+			<p class="date">{$item.time|dm_date_format}</p>
+
+			{foreach from=$item.body item="string"}
+				<p class="body">{$string}</p>
+			{/foreach}
+			
+			{if $item.hasCut}
+				<p class="body">&hellip;</p>
+				<p class="body"><a href="{dm_forum target='post' id=$item.postId}">читать новость целиком</a> &rarr;</p>
+			{/if}
+		</div>
+	{foreachelse}
+		<p>Ничего не найдено.</p>
+	{/foreach}
+</div>
+{/dm_block}

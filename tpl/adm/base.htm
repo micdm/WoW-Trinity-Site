@@ -1,0 +1,38 @@
+{dm_extend name="subpart.htm"}
+
+{dm_block name="title"}Администраторская: {dm_block name="subtitle"}{/dm_block}{/dm_block}
+
+{dm_block name="left_menu_extra"}
+	{if $user.isPlayer == false}
+		<ul class="admin">
+			<li><span><a href="{dm_abs_path url='/adm/visibility/'}">Маскировка</a></span></li>
+			<li><span><a href="{dm_abs_path url='/adm/graphs/'}">Графики</a></span></li>
+			<li><span><a href="{dm_abs_path url='/adm/search/'}">Поиск</a></span></li>
+			
+			{if $user.isAdministrator}<li><span><a href="{dm_abs_path url='/adm/account/'}">Смена пароля</a></span></li>{/if}
+		</ul>
+			
+		<ul class="admin">
+			<li><span><a href="{dm_abs_path url='/adm/referrals/'}">Рефералы</a></span></li>
+			<li><span><a href="{dm_abs_path url='/adm/mmotop/'}">MMOTOP</a></span></li>
+			{if $user.isAdministrator}
+				<li><span><a href="{dm_abs_path url='/adm/donate/webmoney/'}">Чеки за WMR</a></span></li>
+			{/if}
+		</ul>
+			
+		<ul class="admin">
+			<li><span><a href="{dm_abs_path url='/adm/errors/'}">Лог ошибок</a></span></li>
+		</ul>
+	{/if}
+{/dm_block}
+
+{dm_block name="content_right"}
+	{assign var="level" value=$user.level}
+	{if isset($levels.$level)}
+		<div class="block">
+			<p>Уровень доступа: <strong>{$levels.$level}</strong></p>
+		</div>
+	{/if}
+	
+	{dm_block name="content_right_auth"}{/dm_block}
+{/dm_block}

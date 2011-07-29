@@ -1,0 +1,65 @@
+#header {
+	background-image: url('/s/images/events/march8/header3.gif');
+	color: #feadcd;
+}
+
+	#header a {
+		color: #feadcd;
+	}
+	
+		#header a:hover {
+			color: #fe5f9f;
+		}
+
+.background.lt {
+	background-image: url('/s/images/events/march8/left_top.gif');
+}
+
+.background.t {
+	background-image: url('/s/images/events/march8/top.gif');
+}
+
+.background.rt {
+	background-image: url('/s/images/events/march8/right_top.gif');
+}
+
+.background.r {
+	background-image: url('/s/images/events/march8/right.gif');
+}
+
+.background.c {
+	background-image: url('/s/images/events/march8/back.gif');
+}
+
+.background.l {
+	background-image: url('/s/images/events/march8/left.gif');
+}
+
+.background.lb {
+	background-image: url('/s/images/events/march8/left_bottom.gif');
+}
+
+.background.b {
+	background-image: url('/s/images/events/march8/bottom.gif');
+}
+
+.background.rb {
+	background-image: url('/s/images/events/march8/right_bottom.gif');
+}
+
+#main_content .block {
+	background-image: url('/s/images/events/march8/back_light.gif');
+	border-color: #8e5e71;
+}
+
+#footer {
+	color: #feadcd;
+}
+
+	#footer a {
+		color: #feadcd;
+	}
+
+		#footer a:hover {
+			color: #fe5f9f;
+		}

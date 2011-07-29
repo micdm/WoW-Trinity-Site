@@ -1,0 +1,37 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}чеки за WMR{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Обмен WMR на чеки</h2>
+	
+	{dm_error_msg name='webmoney'}
+	{dm_status_msg name='webmoney'}
+	
+	<p>{$rate}WMR = <span class="cheques">1</span></p>
+
+	<form action="" method="post">
+		<dl>
+			<dt>Аккаунт<small>числовой идентификатор</small></dt>
+			<dd><input type="text" name="receiver" {if isset($input.receiver)}value="{$input.receiver}"{/if}></dd>
+		</dl>
+
+		<dl>
+			<dt>Чеки<small>сколько начислить?</small></dt>
+			<dd><input type="text" name="cheques" {if isset($input.cheques)}value="{$input.cheques}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>ИЛИ WMR<small>сколько внесено?</small></dt>
+			<dd><input type="text" name="wmr" {if isset($input.wmr)}value="{$input.wmr}"{/if}></dd>
+		</dl>
+	
+		<p><input type="submit" name="webmoney" value="Начислить"></p>
+	</form>
+</div>
+{/dm_block}

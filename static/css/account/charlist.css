@@ -1,0 +1,21 @@
+table.charlist td.referral_link {
+	text-align: center;
+}
+
+table.charlist td.exchange_name {
+	text-align: center;
+	width: 140px;
+}
+
+
+table.charlist td.history_date {
+	text-align: center;
+}
+
+table.charlist td.history_ip {
+	text-align: center;
+}
+
+table.charlist td.history_description {
+	width: 320px;
+}

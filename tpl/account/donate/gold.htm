@@ -1,0 +1,27 @@
+{dm_extend name="account/donate/base.htm"}
+
+{dm_block name="subtitle"}золото{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Обмен чеков на золото</h2>
+	
+	{dm_error_msg name='gold'}
+	{dm_status_msg name='gold'}
+	
+	<p><span class="cheques">1</span> = {dm_number value=$rate numbers="золотой,золотых,золотых"}.</p>
+	<form action="" method="post">
+		<dl>
+			<dt>Имя персонажа<small>можно указать чужого персонажа и сделать ему подарок :)</small></dt>
+			<dd><input type="text" name="receiver" {if isset($input.receiver)}value="{$input.receiver}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>Сколько чеков тратите?</dt>
+			<dd><input type="text" name="amount" {if isset($input.amount)}value="{$input.amount}"{/if}></dd>
+		</dl>
+
+		<p><input type="submit" name="gold" value="Хочу"></p>
+	</form>
+</div>
+{/dm_block}

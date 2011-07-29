@@ -1,0 +1,34 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}персонажи{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Персонажи на аккаунте</h2>
+	
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+	
+	<p>Если персонаж "застрял", можно попробовать вытащить его. Персонаж должен быть <strong>оффлайн</strong>.</p>
+	<p>При этом с персонажа будут удалены как позитивные, так и негативные магические эффекты, а также добавится небольшой штраф.</p>		
+	
+	{if $list}
+		<form action="" method="post">
+			<dl>
+				<dt>Кого вытаскиваем?</dt>
+				<dd>
+					<select name="guid">
+						{foreach from=$list item="character"}
+							<option value="{$character.guid}">{$character.name}</option>
+						{/foreach}
+					</select>
+				</dd>
+			</dl>
+			
+			<p><input type="submit" name="main" value="Вытащить"></p>
+		</form>
+	{else}
+		<p>Персонажей не найдено.</p>
+	{/if}
+</div>
+{/dm_block}

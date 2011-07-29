@@ -1,0 +1,71 @@
+{dm_extend name="account/donate/base.htm"}
+
+{dm_block name="subtitle"}предметы{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/items.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/donate/items.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/donate/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+	<div class="block">
+		<h2>Обмен чеков на предметы {if $user.isAdministrator}(<a href="{dm_abs_path url='/adm/donate/items/'}{$category}/">редактировать...</a>){/if}</h2>
+	
+		{dm_error_msg name='main'}
+		{dm_status_msg name='main'}
+
+		<p>
+			{foreach from=$categories item="item"}
+				{if $item.id == $category}
+					<strong>{$item.name}</strong>
+				{else}
+					<a href="{dm_abs_path url='/account/donate/items/'}{$item.id}/">{$item.name}</a>
+				{/if}
+				&nbsp;
+			{/foreach}
+		</p>
+
+		{if $items}
+			<p>Выберите предметы в списках ниже и заполните форму.</p>
+			<form action="" method="post">
+				<dl>
+					<dt>Имя персонажа<small>можно указать чужого персонажа и сделать ему подарок :)</small></dt>
+					<dd><input type="text" name="receiver" {if isset($input.name)}value="{$input.name}"{/if}></dd>
+				</dl>
+				<p><input type="submit" name="main" value="Хочу"></p>
+	
+				{foreach from=$items key="i" item="subcategory"}
+					<table cellpadding="0" cellspacing="0" class="charlist">
+						<tr>
+							<th></th>
+							<th></th>
+							<th>{$subcategories.$i}</th>
+							<th>Цена</th>
+						</tr>
+					
+						{foreach from=$subcategory key="i" item="item"}
+							<tr>
+								<td class="icon" style="background-image: url('{$item.icon}')">
+									<div class="icon_medium">
+										{if $item.description}<div id="description{$item.entry}" class="item_description">{$item.description}</div>{/if}
+									</div>
+								</td>
+								<td class="checkbox"><input type="checkbox" name="items[]" value="{$item.entry}"></td>
+								<td>{$item.name}</td>
+								<td class="price"><span class="cheques">{$item.price}</span></td>
+							</tr>
+						{/foreach}
+					</table>
+				{/foreach}
+			</form>
+		{else}
+			<p>Ничего не найдено.</p>
+		{/if}
+	</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra_auth"}
+	<script type="text/javascript" src="/s/js/items.js"></script>
+{/dm_block}

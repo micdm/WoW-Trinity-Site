@@ -1,0 +1,20 @@
+{dm_extend name="account/donate/base.htm"}
+
+{dm_block name="subtitle"}Webmoney-взнос{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/account/donate/sms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Взнос с помощью Webmoney</h2>
+	<p>Более выгодный способ, чем <a href="{dm_abs_path url='/account/donate/sms/'}">отправка SMS</a>: {$rate}WMR = <span class="cheques">1</span>.</p>
+	<p>Сделайте перевод на WMR-кошелек <strong>{$purse}</strong>. В примечаниях укажите число <strong>{$user.id}</strong>.</p>
+
+	<p>Перевод также можно осуществить через мультикассы. В этом случае напишите на форуме приватное сообщение на ник <strong><a href="{dm_forum target='profile' id='2'}" title="Перейти к профилю пользователя">Mogol</a></strong>. В сообщении укажите дату, сумму перевода и число <strong>{$user.id}</strong>.</p>
+	<p>Необходимо помнить, что комиссия мультикасс обычно составляет значительную величину от платежа (~10%).</p>
+
+	<p>Баланс будет пополнен сразу после рассмотрения заявки.</p>
+</div>
+{/dm_block}

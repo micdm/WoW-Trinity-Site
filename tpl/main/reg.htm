@@ -1,0 +1,64 @@
+{dm_extend name="base_main.htm"}
+
+{dm_block name="title"}Регистрация{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+<div class="block">
+	<h2>О регистрации</h2>
+
+	{if $premium}
+		<p><strong class="green">Внимание!</strong> Все новички получают удвоенный опыт в течение двух недель.</p>
+	{/if}
+	
+	<p>У нас есть <a href="{dm_forum target='topic' id='2216'}">реферальная программа</a>. Приводите друзей и получайте призы!</p>
+	<p>Ну а что делать после регистрации, читайте <a href="{dm_forum target='topic' id='242'}">здесь</a>.</p>
+</div>
+
+<div class="block">
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+
+	<form action="" method="post">
+		<dl>
+			<dt>Логин<small>цифры и латинские символы, 3-32 всего</small></dt>
+			<dd><input type="text" name="username" {if isset($input.username)}value="{$input.username}"{/if}></dd>
+		</dl>
+		
+		<dl>
+			<dt>Пароль<small>цифры, латинские символы или спецсимволы !"#$%, 3-16 всего</small></dt>
+			<dd><input type="password" name="password"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Пароль еще раз</dt>
+			<dd><input type="password" name="confirm"></dd>
+		</dl>
+		
+		<dl>
+			<dt>Почта <strong class="green">(необязательно)</strong><small>сможете указать позже</small></dt>
+			<dd><input type="text" name="email" {if isset($input.email)}value="{$input.email}"{/if}></dd>
+		</dl>
+
+		{if $needCaptcha}
+			<p><img id="captcha" src="{dm_abs_path url='/reg/captcha/'}" onclick="this.src='{dm_abs_path url='/reg/captcha/'}?' + Math.random()" title="Кликните, чтобы получить другую картинку"></p>
+			
+			<dl>
+				<dt>Текст на картинке<small>если текст нечитабельный, кликните по картинке и загрузите другую</small></dt>
+				<dd><input type="text" name="captcha" maxlength="7"></dd>
+			</dl>
+		{/if}
+
+		<p><input type="submit" name="main" value="Зарегистрироваться"></p>
+		
+		<p><a href="{dm_abs_path url='/recovery/'}" title="Можете попробовать восстановить пароль">Уже есть аккаунт, но забыли пароль?</a></p>
+	</form>
+</div>
+{/dm_block}
+
+{dm_block name="js_bottom_extra"}
+	<script type="text/javascript" src="/s/js/forms.js"></script>
+{/dm_block}

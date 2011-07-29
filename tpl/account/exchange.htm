@@ -1,0 +1,145 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}обмен{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Обмен персонажами</h2>
+
+	<p>Если Вы хотите безопасно поменяться персонажами в пределах нашего сервера, можете воспользоваться данным сервисом.</p>
+	<p>Вы можете отказаться от своего предложения в любое время.</p>
+	<p>Подача заявки стоит <span class="cheques">{$price}</span>.</p>
+</div>
+
+<div class="block">
+	<h2>Новая заявка</h2>
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+	
+	{if sizeof($list)}
+		<form action="" method="post">
+			<dl>
+				<dt>Кого будем менять?</dt>
+				<dd>
+					<select name="my">
+						{foreach from=$list item="character"}
+							<option value="{$character.guid}">{$character.name}</option>
+						{/foreach}
+					</select>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>Кого хотим получить?<small>имя чужого персонажа</small></dt>
+				<dd>
+					<input type="text" name="its" {if isset($input.character)}value="{$input.character}"{/if}>
+				</dd>
+			</dl>
+			
+			<p><input type="submit" name="main" value="Создать заявку"></p>
+		</form>
+	{else}
+		<p>Персонажей не найдено.</p>
+	{/if}
+</div>
+
+<div class="block">
+	<h2>Исходящие заявки</h2>
+	
+	{dm_error_msg name='remove'}
+	{dm_status_msg name='remove'}
+
+	{if $outcoming}
+		<p>Отметьте заявки, которые хотите отменить.</p>
+		
+		<form action="" method="post">
+			<table cellpadding="0" cellspacing="0" class="charlist">
+				<tr>
+					<th></th>
+					<th>Имя</th>
+					<th>Уровень</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>Имя</th>
+					<th>Уровень</th>
+					<th></th>
+					<th></th>
+				</tr>
+				
+				{foreach from=$outcoming item="row"}
+					<tr>
+						<td><input type="checkbox" name="ids[]" value="{$row.id}" title="Отметьте, чтобы отказаться от заявки"></td>
+						<td class="exchange_name">{$row.myName}</td>
+						<td class="level">{$row.myLevel}</td>
+						<td class="race"><div class="r{$row.myRace}_{$row.myGender}" title="{$races[$row.myRace]}"></td>
+						<td class="class"><div class="c{$row.myClass}" title="{$classes[$row.myClass]}"></div></td>
+						<td>&rarr;</td>
+						<td class="exchange_name">{$row.itsName}</td>
+						<td class="level">{$row.itsLevel}</td>
+						<td class="race"><div class="r{$row.itsRace}_{$row.itsGender}" title="{$races[$row.itsRace]}"></td>
+						<td class="class"><div class="c{$row.itsClass}" title="{$classes[$row.itsClass]}"></div></td>
+					</tr>
+				{/foreach}
+			</table>
+			
+			<p><input type="submit" name="remove" value="Отменить"></p>
+		</form>
+	{else}
+		<p>Исходящих заявок не найдено. Вы можете создать новую в форме выше.</p>
+	{/if}
+</div>
+
+<div class="block">
+	<h2>Входящие заявки</h2>
+	
+	{dm_error_msg name='accept'}
+	{dm_status_msg name='accept'}
+
+	{if $incoming}
+		<p>Нажмите кнопку слева от заявки, которую хотите принять.</p>
+		
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th></th>
+				<th>Имя</th>
+				<th>Уровень</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>Имя</th>
+				<th>Уровень</th>
+				<th></th>
+				<th></th>
+			</tr>
+			
+			{foreach from=$incoming item="row"}
+				<form action="" method="post">
+					<input type="hidden" name="my" value="{$row.myGuid}">
+					<input type="hidden" name="its" value="{$row.itsGuid}">
+	
+					<tr>
+						<td><input type="submit" name="accept" value="+" title="Нажмите, чтобы принять заявку"></td>
+						<td class="exchange_name">{$row.myName}</td>
+						<td class="level">{$row.myLevel}</td>
+						<td class="race"><div class="r{$row.myRace}_{$row.myGender}" title="{$races[$row.myRace]}"></td>
+						<td class="class"><div class="c{$row.myClass}" title="{$classes[$row.myClass]}"></div></td>
+						<td>&rarr;</td>
+						<td class="exchange_name">{$row.itsName}</td>
+						<td class="level">{$row.itsLevel}</td>
+						<td class="race"><div class="r{$row.itsRace}_{$row.itsGender}" title="{$races[$row.itsRace]}"></td>
+						<td class="class"><div class="c{$row.itsClass}" title="{$classes[$row.itsClass]}"></div></td>
+					</tr>
+				</form>
+			{/foreach}
+		</table>
+	{else}
+		<p>Входящих заявок не найдено.</p>
+	{/if}
+</div>
+{/dm_block}

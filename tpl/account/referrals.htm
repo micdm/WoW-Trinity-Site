@@ -1,0 +1,76 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}рефералы{/dm_block}
+
+{dm_block name="css_extra_auth"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/account/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>О реферальной системе</h2>
+	<p>Реферальная система позволяет получать бонусы за каждого человека, который присоединился к нам по Вашей рекомендации, и который провел достаточно времени в игровом мире.</p>
+	<p>Играйте у нас вместе со своими друзьями!</p>
+	<p>Чтобы мы знали, что новый игрок - Ваш друг, предложите ему регистрироваться по одной из нижеследующих ссылок. Бонусы будет получать только тот персонаж, чью ссылку Вы выберете!</p>
+	<p>Кстати, ссылку можно совместить с <a href="{dm_abs_path url='/account/userbars/'}">юзербаром</a>.</p>
+</div>
+	
+<div class="block">
+	<h2>Персонажи и их ссылки</h2>
+	
+	{if count($list)}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th>Персонаж</th>
+				<th>Ссылка</th>
+			</tr>
+			
+			{foreach from=$list key="i" item="character"}
+				<tr class="{cycle values='light,dark'}">
+					<td class="number">{$i+1}</td>
+					<td class="name">{$character.name}</td>
+					<td class="referral_link"><a href="{dm_abs_path url='/reg/?ref='}{$character.guid}">{dm_abs_path url='/reg/?ref=' host='1'}{$character.guid}</a></td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>У Вас нет персонажей.</p>
+	{/if}
+</div>
+
+<div class="block">
+	<h2>Реферальные персонажи</h2>
+
+	{if count($referrals)}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th>Имя</th>
+				<th>Уровень</th>
+				<th></th>
+				<th></th>
+			</tr>
+			
+			{foreach from=$referrals key="i" item="player"}
+				<tr class="{cycle values='light,dark'} {if $player.faction == 0}alliance{else}horde{/if}">
+					<td class="number">{$i+1}</td>
+					<td class="name">{$player.name}</td>
+					<td class="level">{$player.level}</td>
+					<td class="{$player.race}_{$player.gender}" title="{$races[$player.race]}"></td>
+					<td class="class c{$player.class}" title="{$classes[$player.class]}"></td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>Реферальных персонажей не найдено.</p>
+	{/if}
+</div>
+
+{if $money}
+	<div class="block">
+		<p>Суммарный доход: {dm_number value=$money numbers="золотой,золотых,золотых" format="<strong>#1</strong> #2"}.</p>
+	</div>
+{/if}
+{/dm_block}

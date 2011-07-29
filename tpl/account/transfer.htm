@@ -1,0 +1,47 @@
+{dm_extend name="account/base.htm"}
+
+{dm_block name="subtitle"}перенос{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	{dm_block name="content_right_auth_description"}
+		<h2>Перенос персонажа</h2>
+
+		<p>Процедура переноса является <strong>необратимой</strong> после своего завершения. Это означает, что операцию нельзя будет отменить.</p>
+		<p>По электронной почте Вам будет отправлено письмо с дальнейшими указаниями. Адрес почты можете предварительно <a href="{dm_abs_path url="/account/"}">изменить тут</a>.</p>
+		<p>После переноса с персонажа перестанут начисляться бонусы по <a href="{dm_abs_path url="/account/referrals/"}">реферальной программе</a>. Однако сам он бонусы получать cможет.</p>
+		<p>Цена операции - <span class="cheques">{$price}</span>.</p>
+	{/dm_block}
+</div>
+
+<div class="block">
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+	
+	{if sizeof($list)}
+		<form action="" method="post">
+			<dl>
+				<dt>Кого переносим?</dt>
+				<dd>
+					<select name="guid">
+						{foreach from=$list item="character"}
+							<option value="{$character.guid}">{$character.name}</option>
+						{/foreach}
+					</select>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>Куда переносим?<small>логин целевого аккаунта</small></dt>
+				<dd>
+					<input type="text" name="account" {if isset($input.account)}value="{$input.account}"{/if}>
+				</dd>
+			</dl>
+			
+			<p><input type="submit" name="main" value="Перенести"></p>
+		</form>
+	{else}
+		<p>Подходящих персонажей не найдено.</p>
+	{/if}
+</div>
+{/dm_block}

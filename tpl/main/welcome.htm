@@ -1,0 +1,71 @@
+{dm_extend name="base_main.htm"}
+
+{dm_block name="title"}Добро пожаловать{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/main/news.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/main/welcome.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+	<div class="block">
+		<h2>Как начать</h2>
+		<ol>
+			<!--
+			<li><a href="{dm_abs_path url='/reg/'}" title="Зарегистрироваться">Зарегистрируйте аккаунт</a>.</li>
+			<li>Скачайте клиент или пропатчите имеющийся до версии {$client}.</li>
+			<li><a href="{dm_abs_path url='/warmor/update/warmor.exe'}" title="Скачать античит">Скачайте античит</a> и поместите в папку с игрой (файл <em>realmlist.wtf</em> вам теперь не нужен).</li>
+			<li>Запустите <em>warmor.exe</em>, полученный на предыдущем шаге, и следуйте указаниям.</li>
+			-->
+			
+			<li><a href="{dm_abs_path url='/reg/'}" title="Зарегистрироваться">Зарегистрируйте аккаунт</a>.</li>
+			<li>Скачайте клиент или пропатчите имеющийся до версии {$client}.</li>
+			<li>Скачайте и поместите файл <a href="{dm_abs_path url="/realmlist/"}" title="Скачать наш realmlist.wtf">realmlist.wtf</a> в папки data/ruRU и data/enGB.</li>
+			<li>Запустите <em>wow.exe</em>.</li>
+		</ol>
+		<p class="goto"><a href="{dm_forum target='topic' id='242'}" title="Узнать подробности">посмотреть подробности</a> &rarr;</p>
+	</div>
+
+	{if isset($news)}
+		<div id="news" class="block">
+			<h2>Последние новости</h2>
+			{if count($news)}
+				{foreach from=$news key="i" item="item"}
+					<div class="record">
+						<h3>{$item.poster}: <a href="{dm_forum target='post' id=$item.postId}" class="title">{$item.subject}</a></h3>
+						<p class="date">{$item.time|dm_date_format}</p>
+						
+						{foreach from=$item.body item="string"}
+							<p class="body">{$string}</p>
+						{/foreach}
+						
+						{if $item.hasCut}
+							<p class="body">&hellip;</p>
+							<p class="body"><a href="{dm_forum target='post' id=$item.postId}">читать новость целиком</a> &rarr;</p>
+						{/if}
+					</div>
+				{/foreach}
+				
+				<p class="goto"><a href="{dm_abs_path url='/news/'}" title="Перейти к полному списку новостей">читать все новости</a> &rarr;</p>
+			{else}
+				<p>Ничего не найдено.</p>
+			{/if}
+		</div>
+	{/if}
+	
+	{if isset($messages)}
+		<div id="forum" class="block">
+			<h2>Последние сообщения на форуме</h2>
+			{foreach from=$messages item="record"}
+				<div class="record">
+					<p class="date">{$record.time|dm_date_format}</p>
+					<p><a href="{dm_forum target='profile' id=$record.posterId}" class="author">{$record.posterName}</a> &rarr; <a href="{dm_forum target='post' id=$record.postId}">{$record.topicName|dm_truncate:25}</a> ({$record.forumName})</p>
+				</div>
+			{foreachelse}
+				<p>Ничего не найдено.</p>
+			{/foreach}
+			
+			<p class="goto"><a href="{dm_forum}" title="На форуме можно обсудить разные интересные дела">перейти на форум</a> &rarr;</p>
+		</div>
+	{/if}
+{/dm_block}

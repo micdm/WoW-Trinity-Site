@@ -1,0 +1,33 @@
+{dm_extend name="adm/base.htm"}
+
+{dm_block name="subtitle"}маскировка{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/forms.css">
+{/dm_block}
+
+{dm_block name="content_right_auth"}
+<div class="block">
+	<h2>Маскировка</h2>
+	<p>Тут можно отметить персонажей, которые должны отображаться в списке <a href="{dm_abs_path url='/server/gms/'}">GM-персонажи</a> (если хочется каких-то персонажей спрятать).</p>
+	<p>С включенным флажком персонаж не будет отображаться в большинстве списков.</p>
+	<p>Кроме того, с отключенным флажком нельзя создать ГМ-юзербар.</p>
+	<p>Вообще-то это не стопроцентная анонимизация :).</p>
+</div>
+
+<div class="block">
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+
+	<form action="" method="post">
+		{foreach from=$list key="guid" item="char"}
+			<dl>
+				<dt>{$char.name}</dt>
+				<dd><input type="checkbox" name="list[]" value="{$guid}" {if $char.hidden}checked="checked"{/if}></dd>
+			</dl>
+		{/foreach}
+			
+		<p><input type="submit" name="main" value="Сохранить"></p>
+	</form>
+</div>
+{/dm_block}

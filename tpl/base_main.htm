@@ -1,0 +1,172 @@
+{dm_extend name="base.htm"}
+
+{dm_block name="css"}
+	<link rel="stylesheet" type="text/css" href="/s/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/s/css/cheques.css">
+	
+	{dm_block name="css_extra"}{/dm_block}
+	
+	{if isset($event)}
+		{foreach from=$event.css item="file"}
+			<link rel="stylesheet" type="text/css" href="/s/css/{$file}">
+		{/foreach}
+	{/if}
+{/dm_block}
+
+{dm_block name="js"}
+	<script type="text/javascript" src="/s/js/another/jquery-1.4.2.min.js"></script>
+{/dm_block}
+
+{dm_block name="content"}
+	<div id="root_container">
+		<!-- Шапка -->
+		<div id="header">
+			<!-- Лого -->
+			<a id="logo" href="{dm_abs_path url='/welcome/'}" title="Перейти на главную страницу"></a>
+			
+			<div id="top_menu" class="block">
+				<a href="{dm_abs_path url='/reg/'}">Регистрация</a>
+				<a href="{dm_abs_path url='/account/'}">Аккаунт</a>
+				<a href="{dm_abs_path url='/server/'}">Сервер</a>
+				<a id="forum_link" href="{dm_forum}">Форум</a>
+			</div>
+			
+			<!-- Случайный анонс/совет -->
+			<div id="hint">
+				{if isset($event.tip)}
+					<a href="{dm_abs_path url=$event.tip.link}">{$event.tip.text}</a>
+				{else}
+					{$announce}
+				{/if}
+			</div>
+			
+			{if $mmotop}
+				<!-- Место на mmotop.ru -->
+				<div id="mmotop_banner">
+					<div id="mmotop_header">Рейтинг</div>
+					<div><a href="http://wow.mmotop.ru/vote/29774/" target="_blank" title="Поддержите сервер в голосовании">mmotop.ru</a></div>
+					<div id="mmotop_place">{$mmotop.place}<sub>/{$mmotop.total}</sub></div>
+					<div id="mmotop_votes">{dm_number value=$mmotop.votes numbers="голос,голоса,голосов"}</div>
+				</div>
+			{/if}
+		</div>
+		
+		<!-- Центральная часть -->
+		<div id="body">
+			<!-- Левое меню -->
+			<div id="left_menu">
+				<div id="server_info" class="block">
+					<h2>Сервер</h2>
+					<ul>
+						<li>
+							Онлайн: <a href="{dm_abs_path url='/server/online/'}" title="Тут есть список игроков онлайн">{$online.total}</a>
+							{if $online.total}
+								<div class="online"><span class="alliance_icon" title="Игроки Альянса">{$online.alliance}</span> + <span class="horde_icon" title="Игроки Орды">{$online.horde}</span></div>
+							{/if}
+						</li>
+						<li>Аптайм: <span id="server_info_uptime">{if $uptime.hours > 0}{dm_number value=$uptime.hours numbers="час,часа,часов"}{elseif $uptime.minutes > 0}{dm_number value=$uptime.minutes numbers="минута,минуты,минут"}{else}меньше минуты{/if}</span></li>
+						<li>Рейты: {$rates}</li>
+						<li>Клиент: {$client}</li>
+						<li>Рилмлист: <a href="{dm_abs_path url="/realmlist/"}" title="Скачать наш realmlist.wtf">realmlist.wtf</a></li>
+					</ul>
+				</div>
+			
+				<div id="left_menu_items">
+					{dm_block name="left_menu"}
+						<ul>
+							<li><span><a href="{dm_abs_path url='/welcome/'}">Главная</a></span></li>
+							<li><span><strong><a href="{dm_abs_path url='/reg/'}">Регистрация</a></strong></span></li>
+							<li><span><a href="{dm_abs_path url='/account/'}">Аккаунт</a></span></li>
+						</ul>
+
+						<ul>
+							<li><span><a href="{dm_abs_path url='/account/donate/'}" title="Желаете поддержать проект?">Помощь серверу</a></span></li>
+						</ul>
+
+						<ul>
+							<li><span><a href="{dm_abs_path url='/server/online/'}">Игроки онлайн</a></span></li>
+							<li><span><a href="{dm_abs_path url='/server/guild/'}">Гильдии</a></span></li>
+							<li><span><a href="{dm_abs_path url='/server/arena/'}">Арены</a></span></li>
+						</ul>
+	
+						<ul>
+							<li><span><a href="{dm_abs_path url='/blog/'}" title="Новости из мира WoW">WoW Craft</a></span></li>
+							<li><span><a href="{dm_abs_path url='/aowow/'}">База данных</a></span></li>
+							<li><span><a href="{dm_abs_path url='/addons/'}">Аддоны</a></span></li>
+							<li><span><a href="{dm_abs_path url='/files/'}">Файлы</a></span></li>
+							<li><span><a href="{dm_abs_path url='/aowow/'}?talent">Таланты</a></span></li>
+						</ul>
+					{/dm_block}
+				</div>
+				
+				<div>
+					<ul>
+						<!--
+						<li id="golpas_banner">
+							<a href="http://golpas.tomsk.ru" title="Букмекерская контора Гол+Пас"></a>
+						</li>
+						-->
+						
+						<li id="betcourt_banner_wrapper"><div id="betcourt_banner"></div></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- Основное содержимое -->
+			<div id="main_content">
+				{dm_block name="content_right"}{/dm_block}
+				
+				<div class='block'>
+					<!-- Баннерное место: wow.tomsk.net -->
+					<script type="text/javascript">
+						document.write("<div id='stack_banner'><"+'script src="http://a.metka.ru/acode.php?id=4&r='+Math.random()*1000000+'"></'+'script></div>');
+					</script>
+				</div>
+			</div>
+			
+			<!-- Разделитель -->
+			<div id="body_bottom"></div>
+		</div>
+		
+		<!-- Подвал -->
+		<div id="footer">
+			<!-- Баннер TBE -->
+			<div id="tbe_banner">
+				{literal}
+				<script type="text/javascript">//<![CDATA[
+					var icry = document.getElementsByTagName("script");
+					icry = icry[icry.length - 1];
+					function t_icry()
+					{
+						var s = document.createElement("script");
+						s.type = "text/javascript";
+						s.src = "http://tbe.tom.ru/?jg=x&s=46860&a=wow.tomsk.net&id=icry&rnd=" + (new Date()).getTime();
+						document.documentElement.firstChild.appendChild(s);
+					}
+					
+					setTimeout(t_icry, 1);
+				//]]>
+				</script>
+				{/literal}
+				<noscript>
+					<p style="display:inline"><a href="http://tbe.tom.ru/?gl=x&s=46860&amp;a=wow.tomsk.net"><img src="http://tbe.tom.ru/?gi=x&amp;a=wow.tomsk.net" alt="TBE" style="border:0"></a></p>
+				</noscript>
+			</div>
+		
+			<!-- Типа о нас -->
+			<div id="about" title="А также wet.wow и Magistral">&copy; 2006 &mdash; 2011 игровой сервер WoW "Aeternus"</div>
+			
+			<!-- Маленькое лого в подвале -->
+			<a id="logo_bottom" href="#" title="Наверх"></a>
+		</div>
+	</div>
+{/dm_block}
+
+{dm_block name="js_bottom"}
+	{dm_block name="js_bottom_extra"}{/dm_block}
+	
+	<script type="text/javascript" src="/s/js/another/swfobject/swfobject.js"></script>
+	<script type="text/javascript" src="/s/js/another/jquery/cookie.js"></script>
+	<script type="text/javascript" src="/s/js/another/json.js"></script>
+	<script type="text/javascript" src="/s/js/onload.js"></script>
+{/dm_block}

@@ -1,0 +1,8 @@
+{dm_extend name="mail/base.txt"}
+
+{dm_block name="title"}Пароль успешно изменен.{/dm_block}
+
+{dm_block name="content"}
+Сгенерирован новый пароль для аккаунта {$username}: {$password}.
+Не забудьте поменять его в личном кабинете.
+{/dm_block}

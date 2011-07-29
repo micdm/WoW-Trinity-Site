@@ -1,0 +1,8 @@
+table.charlist tr.inactive {
+	color: gray;
+}
+
+table.charlist td.value {
+	width: 200px;
+	text-align: right;
+}

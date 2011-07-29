@@ -1,0 +1,105 @@
+{dm_extend name="server/base.htm"}
+
+{dm_block name="title"}Топ-20{/dm_block}
+
+{dm_block name="css_extra"}
+	<link rel="stylesheet" type="text/css" href="/s/css/charlist.css">
+{/dm_block}
+
+{dm_block name="content_right"}
+<div class="block">
+	<h2>Топ-20</h2>
+
+	<p>Здесь собраны самые-самые персонажи.</p>
+</div>
+
+<div class="block">
+	<h2>Топ-20 по чистому игровому времени</h2>
+		
+	{if $top.byTime}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th>Имя</th>
+				<th>Уровень</th>
+				<th></th>
+				<th></th>
+				<th>Часы</th>
+			</tr>
+			
+			{foreach from=$top.byTime key="i" item="player"}
+				<tr class="{cycle values='light,dark'} {if $player.faction == 0}alliance{else}horde{/if}" title="{if $player.days}{dm_number value=$player.days numbers='день,дня,дней'}{else}Меньше дня{/if}">
+					<td class="number">{$i+1}</td>
+					<td class="name">{$player.name}</td>
+					<td class="level">{$player.level}</td>
+					<td class="race"><div class="r{$player.race}_{$player.gender}" title="{$races[$player.race]}"></div></td>
+					<td class="class"><div class="c{$player.class}" title="{$classes[$player.class]}"></div></td>
+					<td class="top20_value">{$player.time}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>В этом топе никого нет.</p>
+	{/if}
+</div>
+
+<div class="block">
+	<h2>Топ-20 по здоровью</h2>
+	
+	{if $top.byHealth}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th>Имя</th>
+				<th>Уровень</th>
+				<th></th>
+				<th></th>
+				<th>Здоровье</th>
+			</tr>
+			
+			{foreach from=$top.byHealth key="i" item="player"}
+				<tr class="{cycle values='light,dark'} {if $player.faction == 0}alliance{else}horde{/if}">
+					<td class="number">{$i+1}</td>
+					<td class="name">{$player.name}</td>
+					<td class="level">{$player.level}</td>
+					<td class="race"><div class="r{$player.race}_{$player.gender}" title="{$races[$player.race]}"></div></td>
+					<td class="class"><div class="c{$player.class}" title="{$classes[$player.class]}"></div></td>
+					<td class="top20_value">{$player.health}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>В этом топе никого нет.</p>
+	{/if}
+</div>
+
+<div class="block">
+	<h2>Топ-20 по золоту</h2>
+	
+	{if $top.byGold}
+		<table cellpadding="0" cellspacing="0" class="charlist">
+			<tr>
+				<th>#</th>
+				<th>Имя</th>
+				<th>Уровень</th>
+				<th></th>
+				<th></th>
+				<th>Золото</th>
+			</tr>
+			
+			{foreach from=$top.byGold key="i" item="player"}
+				<tr class="{cycle values='light,dark'} {if $player.faction == 0}alliance{else}horde{/if}">
+					<td class="number">{$i+1}</td>
+					<td class="name">{$player.name}</td>
+					<td class="level">{$player.level}</td>
+					<td class="race"><div class="r{$player.race}_{$player.gender}" title="{$races[$player.race]}"></div></td>
+					<td class="class"><div class="c{$player.class}" title="{$classes[$player.class]}"></div></td>
+					<td class="top20_value">{$player.money}</td>
+				</tr>
+			{/foreach}
+		</table>
+	{else}
+		<p>В этом топе никого нет.</p>
+	{/if}
+</div>
+{/dm_block}

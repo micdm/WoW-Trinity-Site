@@ -1,0 +1,15 @@
+{dm_extend name="account/rename.htm"}
+
+{dm_block name="subtitle"}смена внешности{/dm_block}
+
+{dm_block name="content_right_auth_description"}
+	<h2>Смена внешности</h2>
+	
+	{dm_error_msg name='main'}
+	{dm_status_msg name='main'}
+	
+	<p>Персонаж должен быть <strong>оффлайн</strong>.</p>
+	<p>Цена не зависит от уровня персонажа и составляет сейчас <span class="cheques">{$price}</span>.</p>
+	<p>Данный сервис позволяет сменить и имя, и черты лица (рога, клыки), и пол персонажа.</p>
+	<p>Вы можете <a href="{dm_abs_path url='/account/rename/'}">сменить только имя</a>, зато за меньшую цену.</p>
+{/dm_block}
